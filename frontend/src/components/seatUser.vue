@@ -1,67 +1,120 @@
 <template>
-  <div v-if="busDatax" class="flex justify-center">
-    <div v-show="busForm" class="fixed -top-20 inset-0 flex justify-center items-center bg-black bg-opacity-75 z-50">
-      <div class="w-[330px] sm:w-60">
-        <div class="bg-ocean h-14 sm:h-10 border-2 border-black">
+  <div v-if="busDatax" class="flex justify-center bg-gray-200">
+    <div v-if="!user">
+      <div>
+      </div>
+    </div>
+
+    <div v-if="user" class="flex space-x-4">
+      <div class="bg-iPromise hover:bg-tentraO border-2 border-black relative top-10 font-Karantina font-bold px-2">
+        <button
+          @click="goToCustomerDataPage(busDatax.busName, busDatax.keberangkatan, busDatax.destinasi, busDatax.tipe)">
+          <h1 class="uppercase text-2xl">Data Penumpang</h1>
+        </button>
+      </div>
+      <div class="bg-iPromise hover:bg-tentraO border-2 border-black relative top-10 font-Karantina font-bold px-4">
+        <button @click="goToSeatPage(busDatax.busName, busDatax.keberangkatan, busDatax.destinasi, busDatax.tipe)">
+          <h1 class="uppercase text-2xl">Data Kursi</h1>
+        </button>
+      </div>
+    </div>
+
+    <div v-show="busForm" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-75 z-50">
+      <div class="w-auto">
+        <div
+          class="bg-iPromise border-2 border-black rounded-l-md rounded-t-md rounded-r-md rounded-br-none rounded-bl-none">
           <div>
-            <h1 class="text-center text-sunny font-Karantina text-2xl pt-2 sm:pt-0">~Formulir Pemesanan</h1>
+            <h1 class="text-center text-black font-bold font-Karantina text-2xl py-2">~Formulir Pemesanan</h1>
           </div>
         </div>
         <div
-          class="font-Karantina text-3xl sm:text-2xl text-start bg-gray-200 border-2 h-[440px] sm:h-80 border-black px-2 capitalize">
-          <div class="space-y-2 sm:space-y-0 pt-4 pb-2 px-4">
-            <div>
-              <label class="" for="busName">Bus</label>
-              <div class="bg-black">
-                <h1 class="pl-2 bg-gray-200 relative -left-1 -top-1 border-2 border-black">{{ busNames }}</h1>
+          class="font-Karantina text-3xl sm:text-2xl text-start bg-gray-200 border-2 h-auto py-4 border-black px-10 capitalize rounded-l-md rounded-tl-none rounded-tr-node rounded-b-md">
+          <div class="grid grid-cols-2 gap-8">
+            <div class="space-y-2 sm:space-y-0">
+              <div>
+                <label class="" for="busName">Bus</label>
+                <div class="bg-black">
+                  <h1 class="pl-2 bg-gray-200 relative -left-1 -top-1 border-2 border-black">{{ busNames }}</h1>
+                </div>
+              </div>
+              <div>
+                <label class="" for="keberangkatan">Rute</label>
+                <div class="bg-black">
+                  <h1 class="pl-2 bg-gray-200 relative -left-1 -top-1 border-2 border-black"> {{ keberangkatan }} => {{
+                    destinasi }}</h1>
+                </div>
+              </div>
+              <div>
+                <label class="" for="keberangkatan">Waktu Keberangkatan</label>
+                <div class="bg-black">
+                  <h1 class="pl-2 bg-gray-200 relative -left-1 -top-1 border-2 border-black"> {{ jam }}</h1>
+                </div>
+              </div>
+              <div>
+                <label class="" for="numberSeat">Kursi</label>
+                <div class="bg-black">
+                  <h1 class="pl-2 bg-gray-200 relative -left-1 -top-1 border-2 border-black h-11 sm:h-9">{{
+                    selectedSeats.join(',') }}</h1>
+                </div>
               </div>
             </div>
-            <div>
-              <label class="" for="keberangkatan">Rute</label>
-              <div class="bg-black">
-                <h1 class="pl-2 bg-gray-200 relative -left-1 -top-1 border-2 border-black"> {{ keberangkatan }} => {{
-                  destinasi }}</h1>
+            <div class="space-y-[2px] pb-4">
+              <h1>Nama</h1>
+              <div class="bg-black h-8 sm:w-52">
+                <div class="border-2 relative -top-1 -left-1 border-black px-2 h-8 sm:w-52 bg-gray-200">
+                  {{ firstName }} {{ lastName }}
+                </div>
               </div>
-            </div>
-            <div>
-              <label class="" for="keberangkatan">Waktu Keberangkatan</label>
-              <div class="bg-black">
-                <h1 class="pl-2 bg-gray-200 relative -left-1 -top-1 border-2 border-black"> {{ jam }} => {{
-                  destinasi }}</h1>
+              <h1>Nomor Wa</h1>
+              <div class="bg-black h-8">
+                <div class="border-2 relative -top-1 -left-1 border-black px-2 h-8 bg-gray-200">
+                  {{ phone }}
+                </div>
               </div>
-            </div>
-            <div>
-              <label class="" for="numberSeat">Kursi</label>
-              <div class="bg-black">
-                <h1 class="pl-2 bg-gray-200 relative -left-1 -top-1 border-2 border-black h-11 sm:h-9">{{
-                  selectedSeats.join(',') }}</h1>
+              <h1>Email</h1>
+              <div class="bg-black h-8">
+                <div class="border-2 relative -top-1 -left-1 border-black px-2 h-8 bg-gray-200">
+                  {{ email }}
+                </div>
               </div>
-            </div>
-            <div>
-              <label class="" for="destinasi">Harga Tiket</label>
-              <div class="bg-black">
-                <h1 class="pl-2 bg-gray-200 relative -left-1 -top-1 border-2 border-black">Rp. {{ busDatax.harga }}</h1>
+              <div>
+                <label class="" for="destinasi">Harga Tiket</label>
+                <div class="bg-black">
+                  <h1 v-if="kodeReferal !== null"
+                    class="pl-2 bg-gray-200 relative -left-1 -top-1 border-2 border-black">
+                    Rp. {{ (harga) *
+                      (selectedSeats.length) }}</h1>
+                  <h1 v-else class="pl-2 bg-gray-200 relative -left-1 -top-1 border-2 border-black">
+                    Rp. {{ (busDatax.harga) *
+                      (selectedSeats.length) }}</h1>
+                </div>
               </div>
-            </div>
-            <div>
-              <label class="" for="destinasi">Kode Referal</label>
-              <div class="bg-black">
-                <input
-                  class="w-[280px] sm:w-52 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black"
-                  v-model="kodeReferal">
-              </div>
-              <button @click="checkCode">
-                <h1>cek!</h1>
-              </button>
             </div>
           </div>
-          <div @click="next" class="flex justify-end py-2 pr-4">
-            <div class="w-[120px]">
-              <div class="bg-black">
-                <div class="bg-red-700 relative -top-1 -left-1 text-sunny border-2 border-black text-center py-1">
-                  <button>
-                    <h1 class="uppercase font-bold"> next</h1>
-                  </button>
+          <div class="pt-4">
+            <div class="flex justify-center space-x-6">
+              <div @click="sebelum" class="flex justify-start">
+                <div class="w-52">
+                  <div class="bg-black">
+                    <div
+                      class="bg-red-700 relative -top-1 -left-1 text-sunny border-2 border-black text-center py-[3px]">
+                      <button>
+                        <h1 class="uppercase font-bold text-2xl"> Sebelumnya...</h1>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div @click="bookingSeat()" class="flex justify-start">
+                <div class="w-52">
+                  <div class="bg-black">
+                    <div @click="pay"
+                      class="bg-red-700 relative -top-1 -left-1 text-sunny border-2 border-black text-center py-[3px]">
+                      <button>
+                        <h1 class="uppercase font-bold text-2xl"> Bayar...</h1>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -71,26 +124,36 @@
     </div>
     <div v-show="userForm" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-75 z-50">
       <div>
-        <div class="bg-ocean h-14 sm:h-10 w-[330px] sm:w-60 border-2 border-black">
+        <div
+          class="bg-iPromise h-auto w-auto border-2 border-black rounded-l-md rounded-t-md rounded-r-md rounded-br-none rounded-bl-none">
           <div>
-            <h1 class="text-center text-sunny font-Karantina text-2xl pt-2 sm:pt-0">~Formulir Pemesanan</h1>
+            <h1 class="text-center text-black font-bold font-Karantina text-2xl py-2">~Formulir Pemesanan</h1>
           </div>
         </div>
         <div
-          class="font-Karantina text-2xl text-start bg-gray-200 border-2 border-black h-[380px] sm:h-[400px] w-[330px] sm:w-60 px-2 pb-4 pt-2 capitalize">
-          <div class="space-y-2 sm:space-y-0 py-2 pl-2 text-3xl">
+          class="rounded-l-md rounded-t-none rounded-r-md rounded-b-md font-Karantina text-2xl text-start bg-gray-200 border-2 border-black h-auto sm:h-auto py-6 w-auto px-4 pb-6 pt-2 capitalize">
+          <div class="space-y-2 sm:space-y-1 pb-6 pl-2 text-xl tracking-wider">
             <div class="ml-2">
-              <h1>Nama</h1>
-              <div class="bg-black w-[280px] sm:w-52">
+              <h1>First Nama</h1>
+              <div class="bg-black w-[280px] sm:w-52 h-8">
                 <input
-                  class="w-[280px] sm:w-52 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black"
-                  v-model="name">
+                  class="w-[280px] sm:w-52 h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black text-base font-semibold uppercase"
+                  v-model="firstName">
+              </div>
+            </div>
+            <div class="ml-2">
+              <h1>Last Nama</h1>
+              <div class="bg-black w-[280px] sm:w-52 h-8">
+                <input
+                  class="w-[280px] sm:w-52 h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black text-base font-semibold uppercase"
+                  v-model="lastName">
               </div>
             </div>
             <div class="ml-2">
               <h1>Jenis Kelamin</h1>
-              <div class="bg-black w-[280px] sm:w-52">
-                <select v-model="jenisKelamin">
+              <div class="bg-black w-[280px] sm:w-52 h-8">
+                <select v-model="jenisKelamin"
+                  class="w-[280px] sm:w-52 h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black capitalize text-base font-semibold">
                   <option value="Laki-Laki">Laki-Laki</option>
                   <option value="Perempuan">Perempuan</option>
                 </select>
@@ -98,35 +161,79 @@
             </div>
             <div class="ml-2">
               <h1>Nomor Wa</h1>
-              <div class="bg-black w-[280px] sm:w-52">
+              <div class="bg-black w-[280px] sm:w-52 h-8">
                 <input
-                  class="w-[280px] sm:w-52 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black"
+                  class="w-[280px] sm:w-52 h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black font-light tracking-wider text-2xl"
                   v-model="phone">
               </div>
             </div>
             <div>
               <div class="ml-2">
                 <h1>Email</h1>
-                <div class="bg-black w-[280px] sm:w-52">
+                <div class="bg-black w-[280px] sm:w-52 h-8">
                   <input type="email"
-                    class="w-[280px] sm:w-52 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black"
+                    class="w-[280px] sm:w-52 h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black font-semibold text-base"
                     v-model="email">
                 </div>
               </div>
-              <div>
+              <div class="ml-2">
                 <label class="inline-flex items-center pt-1" for="tealCheckBox">
-                  <input id="tealCheckBox" type="checkbox" class="w-6 sm:w-4  h-6 sm:h-4 accent-red-700">
+                  <input id="tealCheckBox" type="checkbox"
+                    class="w-6 sm:w-4  h-6 sm:h-4 accent-red-700 font-semibold text-base">
                   <span class="ml-2 text-2xl sm:text-lg">Tidak ada email.</span>
                 </label>
               </div>
             </div>
+            <div class="pl-2 pb-2">
+              <label class="" for="destinasi">Harga Tiket</label>
+              <div class="bg-black h-8">
+                <h1 class="pl-2 bg-gray-200 h-8 relative -left-1 -top-1 border-2 border-black font-semibold text-base">
+                  Rp. {{
+                    (busDatax.harga) *
+                    (selectedSeats.length) }}</h1>
+              </div>
+            </div>
+            <div class="pl-2">
+              <label class="" for="destinasi">Kode Referal</label>
+              <div class="bg-black h-8">
+                <input
+                  class="w-[280px] sm:w-52 h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black font-semibold text-base"
+                  v-model="kodeReferal">
+              </div>
+              <div>
+                <h1 v-show="refTrue">Kode Referas Anda Berhasil...</h1>
+                <h1 v-show="refFalse">Kode Referal Anda Salah...</h1>
+              </div>
+              <div class="relative -top-6 left-2">
+                <div class="flex justify-end">
+                  <div class=" bg-black transition-transform duration-300 ease-in-out transform hover:scale-110">
+                    <div class="bg-red-700 border-2 relative -top-1 -left-1 border-black text-sunny px-4 tracking-wide">
+                      <button @click="checkCode">
+                        <h1 class="uppercase">cek!</h1>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div @click="bookingSeat()" class="flex justify-end pr-2">
-            <div class="w-[120px]">
-              <div class="bg-black">
-                <div class="bg-red-700 relative -top-1 -left-1 text-sunny border-2 border-black text-center py-1">
+          <div class="flex justify-center ml-4 -mt-4 space-x-4">
+            <div class="w-20">
+              <div @click="cancel"
+                class="bg-black transition-transform duration-300 ease-in-out transform hover:scale-110">
+                <div class="bg-red-700 relative -top-1 -left-1 text-sunny border-2 border-black text-center text-xl">
                   <button>
-                    <h1 class="uppercase font-bold">Next</h1>
+                    <h1 class="uppercase font-bold">Batal...</h1>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="w-28">
+              <div @click="next"
+                class="bg-black transition-transform duration-300 ease-in-out transform hover:scale-110">
+                <div class="bg-red-700 relative -top-1 -left-1 text-sunny border-2 border-black text-center text-xl">
+                  <button>
+                    <h1 class="uppercase font-bold">Selanjutnya...</h1>
                   </button>
                 </div>
               </div>
@@ -137,15 +244,21 @@
     </div>
   </div>
 
-  <div class="bg-gray-200 pb-48 pt-4">
-    <div class="text-center uppercase font-Karantina font-bold">
-      <h1 class="text-5xl">{{ busNames }} {{ getTipe }}</h1>
-      <div class="flex justify-center space-x-1 text-2xl">
-        <h1>Dari <span class="text-cyan-900">{{ keberangkatan }}</span></h1>
-        <h1>Ke <span class="text-lime-900">{{ destinasi }}</span></h1>
+  <div class="flex justify-end pt-12 rounded-md fixed right-0
+z-50">
+    <div class="bg-black">
+      <div class="bg-iPromise px-10 py-6 border-2 border-black relative -top-2 -left-2">
+        <div class="uppercase font-Karantina font-bold text-start tracking-wide">
+          <h1 class="text-3xl">{{ busNames }} {{ getTipe }}</h1>
+          <h1>Jadwal : <span class="text-lg">{{ jam }}, {{ jadwal }}</span></h1>
+          <h1>Keberangkatan : {{ keberangkatan }}</h1>
+          <h1>Tujuan : {{ destinasi }}</h1>
+        </div>
       </div>
     </div>
+  </div>
 
+  <div class="bg-gray-200 pt-10">
     <div class="flex justify-center space-x-8 pt-6 -mb-3">
       <div class="flex space-x-1">
         <div class="bg-gray-200 border-2 border-black w-6 h-6">
@@ -160,7 +273,9 @@
         <h1 class="font-Karantina text-2xl uppercase tracking-wide">Terbooking</h1>
       </div>
     </div>
+  </div>
 
+  <div class="bg-gray-200 pb-48 pt-4">
     <div v-show="seatsSelect" class="fixed right-0 top-[530px] sm:top-[400px] z-50 pl-2">
       <div class="flex justify-start">
         <div>
@@ -238,8 +353,8 @@
                           <h1 v-if="seat.isBooked" class="text-sunny">
                             {{ seat.numberSeat }}
                             <div v-if="seat.bookingInfo"
-                              class="-mb-8 text-lg relative -top-[75px] sm:-top-[85px] left-4 sm:left-3 bg-gray-200 text-black border-2 border-black w-6">
-                              <p>{{ seat.bookingInfo.jenisKelamin[0] }}</p>
+                              class="-mb-8 text-lg relative -top-[75px] sm:-top-[85px] left-4 sm:left-3 bg-gray-200 text-black border-2 border-black w-6 capitalize font-bold tracking-wider">
+                              <p>{{ seat.bookingInfo.jenisKelamin }}</p>
                             </div>
                           </h1>
                           <h1 v-else class="text-black">
@@ -251,8 +366,8 @@
                           <h1 v-if="seat.isBooked" class="text-sunny">
                             {{ seat.numberSeat }}
                             <div v-if="seat.bookingInfo"
-                              class="-mb-8 text-lg relative -top-[75px] sm:-top-[85px] left-5 sm:left-3 bg-gray-200 text-black border-2 border-black w-6">
-                              <p>{{ seat.bookingInfo.jenisKelamin[0] }}</p>
+                              class="-mb-8 text-lg relative -top-[75px] sm:-top-[85px] left-5 sm:left-3 bg-gray-200 text-black border-2 border-black w-6 capitalize font-bold tracking-wider">
+                              <p>{{ seat.bookingInfo.jenisKelamin }}</p>
                             </div>
                           </h1>
                           <h1 v-else class="text-black">
@@ -264,8 +379,8 @@
                           <h1 v-if="seat.isBooked" class="text-sunny">
                             {{ seat.numberSeat }}
                             <div v-if="seat.bookingInfo"
-                              class="-mb-8 text-lg relative -top-[78px] left-1 sm:left-0 sm:-top-16 bg-gray-200 text-black border-2 border-black w-6">
-                              <p>{{ seat.bookingInfo.jenisKelamin[0] }}</p>
+                              class="-mb-8 text-lg relative -top-[78px] left-1 sm:left-0 sm:-top-16 bg-gray-200 text-black border-2 border-black w-6 capitalize font-bold tracking-wider">
+                              <p>{{ seat.bookingInfo.jenisKelamin }}</p>
                             </div>
                           </h1>
                           <h1 v-else class="text-black">
@@ -388,6 +503,10 @@
                       class="-mt-[95px] sm:-mt-[125px] py-10 pr-[1px] text-black mr-5 sm:mr-[65px]">
                       <h1 v-if="seat.isBooked" class="text-sunny">
                         {{ seat.numberSeat }}
+                        <div v-if="seat.bookingInfo"
+                          class="-mb-8 text-lg relative -top-[75px] sm:-top-[85px] left-4 sm:left-10 bg-gray-200 text-black border-2 border-black w-6 capitalize font-bold tracking-wider">
+                          <p>{{ seat.bookingInfo.jenisKelamin }}</p>
+                        </div>
                       </h1>
                       <h1 v-else class="text-black">
                         {{ seat.numberSeat }}
@@ -397,6 +516,10 @@
                       class="-mt-[95px] sm:-mt-[125px] py-10 pr-[1px] text-black mr-10 sm:mr-[2px]">
                       <h1 v-if="seat.isBooked" class="text-sunny">
                         {{ seat.numberSeat }}
+                        <div v-if="seat.bookingInfo"
+                          class="-mb-8 text-lg relative -top-[75px] sm:-top-[85px] left-4 sm:left-10 bg-gray-200 text-black border-2 border-black w-6 capitalize font-bold tracking-wider">
+                          <p>{{ seat.bookingInfo.jenisKelamin }}</p>
+                        </div>
                       </h1>
                       <h1 v-else class="text-black">
                         {{ seat.numberSeat }}
@@ -406,6 +529,10 @@
                       class="-mt-[95px] sm:-mt-[125px] py-10 pl-3 text-black mr-3 sm:mr-[82px] text-2xl">
                       <h1 v-if="seat.isBooked" class="text-sunny">
                         {{ seat.numberSeat }}
+                        <div v-if="seat.bookingInfo"
+                          class="-mb-8 text-lg relative -top-[75px] sm:-top-[85px] left-4 sm:left-0 bg-gray-200 text-black border-2 border-black w-6 capitalize font-bold tracking-wider">
+                          <p>{{ seat.bookingInfo.jenisKelamin }}</p>
+                        </div>
                       </h1>
                       <h1 v-else class="text-black">
                         {{ seat.numberSeat }}
@@ -415,6 +542,10 @@
                       class="-mt-[95px] sm:-mt-[125px] py-10 pl-3 text-black mr-3 sm:mr-[115px] text-2xl">
                       <h1 v-if="seat.isBooked" class="text-sunny">
                         {{ seat.numberSeat }}
+                        <div v-if="seat.bookingInfo"
+                          class="-mb-8 text-lg relative -top-[75px] sm:-top-[85px] left-4 sm:left-0 bg-gray-200 text-black border-2 border-black w-6 capitalize font-bold tracking-wider">
+                          <p>{{ seat.bookingInfo.jenisKelamin }}</p>
+                        </div>
                       </h1>
                       <h1 v-else class="text-black">
                         {{ seat.numberSeat }}
@@ -474,6 +605,10 @@
                       class="-mt-[95px] sm:-mt-[125px] py-10 pr-[1px] text-black mr-5 sm:mr-[65px]">
                       <h1 v-if="seat.isBooked" class="text-sunny">
                         {{ seat.numberSeat }}
+                        <div v-if="seat.bookingInfo"
+                          class="-mb-8 text-lg relative -top-[75px] sm:-top-[85px] left-4 sm:left-10 bg-gray-200 text-black border-2 border-black w-6 capitalize font-bold tracking-wider">
+                          <p>{{ seat.bookingInfo.jenisKelamin }}</p>
+                        </div>
                       </h1>
                       <h1 v-else class="text-black">
                         {{ seat.numberSeat }}
@@ -483,6 +618,10 @@
                       class="-mt-[95px] sm:-mt-[125px] py-10 pr-[1px] text-black mr-10 sm:mr-[38px]">
                       <h1 v-if="seat.isBooked" class="text-sunny">
                         {{ seat.numberSeat }}
+                        <div v-if="seat.bookingInfo"
+                          class="-mb-8 text-lg relative -top-[75px] sm:-top-[85px] left-4 sm:left-10 bg-gray-200 text-black border-2 border-black w-6 capitalize font-bold tracking-wider">
+                          <p>{{ seat.bookingInfo.jenisKelamin }}</p>
+                        </div>
                       </h1>
                       <h1 v-else class="text-black">
                         {{ seat.numberSeat }}
@@ -492,6 +631,10 @@
                       class="-mt-[95px] sm:-mt-[125px] py-10 pl-3 text-black mr-3 sm:mr-[90px] text-2xl">
                       <h1 v-if="seat.isBooked" class="text-sunny">
                         {{ seat.numberSeat }}
+                        <div v-if="seat.bookingInfo"
+                          class="-mb-8 text-lg relative -top-[75px] sm:-top-[85px] left-4 sm:left-0 bg-gray-200 text-black border-2 border-black w-6 capitalize font-bold tracking-wider">
+                          <p>{{ seat.bookingInfo.jenisKelamin }}</p>
+                        </div>
                       </h1>
                       <h1 v-else class="text-black">
                         {{ seat.numberSeat }}
@@ -501,6 +644,10 @@
                       class="-mt-[95px] sm:-mt-[125px] py-10 pl-3 text-black mr-3 sm:mr-[130px] text-2xl">
                       <h1 v-if="seat.isBooked" class="text-sunny">
                         {{ seat.numberSeat }}
+                        <div v-if="seat.bookingInfo"
+                          class="-mb-8 text-lg relative -top-[75px] sm:-top-[85px] left-4 sm:left-0 bg-gray-200 text-black border-2 border-black w-6 capitalize font-bold tracking-wider">
+                          <p>{{ seat.bookingInfo.jenisKelamin }}</p>
+                        </div>
                       </h1>
                       <h1 v-else class="text-black">
                         {{ seat.numberSeat }}
@@ -522,12 +669,25 @@ import Api from "@/services/api";
 import lime from "../assets/seats.png";
 import red from "../assets/seatsRed.png";
 
+function generateUniqueOrderID(length) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let code = '';
+  let x = ''
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    code += characters.charAt(randomIndex);
+    x = "localhost-" + code
+  }
+
+  return x;
+}
+
+const uniqueCode = generateUniqueOrderID(8);
+
 export default {
   data() {
     return {
-      name: "",
-      email: "",
-      phone: "",
       seats: [],
       busNames: null,
       selectedSeats: [],
@@ -549,6 +709,17 @@ export default {
       jenisKelamin: null,
       bookingDatas: [],
       kodeReferal: null,
+      harga: null,
+      reveral: 'bradersque',
+      refTrue: false,
+      refFalse: false,
+      jadwal: null,
+      order_id: '',
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      snapLoaded: false
     };
   },
   created() {
@@ -560,6 +731,18 @@ export default {
   },
   mounted() {
     this.getBookingDatas();
+
+    if (window.snap) {
+      this.snapLoaded = true;
+    } else {
+      const script = document.createElement('script');
+      script.src = "https://app.sandbox.midtrans.com/snap/snap.js";
+      script.dataset.clientKey = "SB-Mid-client-I9Jfgwg5qKycBrEg";
+      script.onload = () => {
+        this.snapLoaded = true;
+      };
+      document.head.appendChild(script);
+    }
   },
   computed: {
     bawahSeats() {
@@ -567,15 +750,87 @@ export default {
     },
     atasSeats() {
       return this.seats.filter(seat => seat.deck === 'atas');
+    },
+    user() {
+      return this.$store.state.user
     }
   },
   methods: {
+    async pay() {
+      if (!this.snapLoaded) {
+        console.error('Midtrans Snap.js is not loaded');
+        return;
+      }
+
+      try {
+        const customerDetails = {
+          first_name: this.firstName,
+          last_name: this.lastName,
+          email: this.email,
+          phone: this.phone
+        };
+
+        if (!this.email) {
+          delete customerDetails.email;
+        }
+
+        const response = await Api.post('create-transaction', {
+          order_id: uniqueCode,
+          gross_amount: this.busDatax.harga * this.selectedSeats.length,
+          customer_details: customerDetails
+        });
+
+        const token = response.data.transaction_token;
+
+        window.snap.pay(token, {
+          onSuccess: function (result) {
+            console.log('Payment Success:', result);
+          },
+          onPending: function (result) {
+            console.log('Payment Pending:', result);
+          },
+          onError: function (result) {
+            console.log('Payment Error:', result);
+          },
+          onClose: function () {
+            console.log('Payment popup closed without finishing the payment');
+          }
+        });
+      } catch (error) {
+        console.error('Error creating transaction:', error);
+      }
+    },
+    goToCustomerDataPage(busName, keberangkatan, destinasi, tipe) {
+      if (!busName) {
+        console.error('Bus name is missing!');
+        return;
+      }
+      this.$router.push({
+        name: 'adminControllers',
+        params: { busName, keberangkatan, destinasi, tipe }
+      }).catch(err => {
+        console.error('Routing failed:', err);
+      });
+    },
+    goToSeatPage(busName, keberangkatan, destinasi, tipe) {
+      if (!busName) {
+        console.error('Bus name is missing!');
+        return;
+      }
+      this.$router.push({
+        name: 'Adminseat',
+        params: { busName, keberangkatan, destinasi, tipe }
+      }).catch(err => {
+        console.error('Routing failed:', err);
+      });
+    },
     checkCode() {
-      const reveral = "bradersque"
-      if (this.kodeReferal === reveral) {
-        this.busDatax.harga -= 20000
+      if (this.kodeReferal === this.reveral) {
+        this.harga = this.busDatax.harga - 20000;
+        this.refTrue = true;
         console.log("kode referal anda success")
       } else {
+        this.refFalse = true;
         console.log("kode referal anda gagal")
       }
     },
@@ -604,13 +859,19 @@ export default {
       this.filterAtas = false;
     },
     next() {
+      this.busForm = true;
+      this.userForm = false;
+    },
+    sebelum() {
       this.userForm = true;
       this.busForm = false;
     },
+    cancel() {
+      this.userForm = false;
+    },
     toForm() {
       if (this.selectedSeats.length != 0) {
-        this.busForm = true;
-        this.seatsSelect = false;
+        this.userForm = true;
       } else {
         this.busForm = false;
         console.log("err")
@@ -629,6 +890,7 @@ export default {
           this.busNames = busData.busName;
           this.getTipe = busData.tipe;
           this.jam = busData.jamKeberangkatan;
+          this.jadwal = busData.jadwal.split('T')[0];
         } else {
           console.log('Bus data not found for:', busName);
           this.seats = [];
@@ -646,69 +908,74 @@ export default {
       if (index === -1) {
         this.selectedSeats.push(seat.numberSeat);
       } else {
-        this.selectedSeats.splice(index, 1); // Remove seat from selection if clicked again
+        this.selectedSeats.splice(index, 1);
       }
     },
     async bookingSeat() {
-      const data = {
-        name: this.name,
-        email: this.email,
-        phone: this.phone,
-        jenisKelamin: this.jenisKelamin,
-        busName: this.busNames,
-        numberSeat: this.selectedSeats, // asumsi selectedSeats adalah array
-        keberangkatan: this.$route.params.keberangkatan,
-        destinasi: this.$route.params.destinasi,
-        jamKeberangkatan: this.jam,
-        deck: this.deck
-      };
+      if (this.kodeReferal !== null) {
+        const data = {
+          name: this.firstName + " " + this.lastName,
+          email: this.email,
+          phone: this.phone,
+          jenisKelamin: this.jenisKelamin,
+          busName: this.busNames,
+          numberSeat: this.selectedSeats,
+          keberangkatan: this.$route.params.keberangkatan,
+          tipe: this.getTipe,
+          destinasi: this.$route.params.destinasi,
+          harga: this.harga * this.selectedSeats.length,
+          jamKeberangkatan: this.jam,
+          deck: this.deck
+        };
 
-      try {
-        const res = await Api.post("booking", data);
-        console.log(res.data);
+        try {
+          const res = await Api.post("booking", data);
+          console.log(res.data);
 
-        // Setelah booking berhasil, tandai setiap kursi sebagai booked
-        for (const seatNumber of this.selectedSeats) {
-          const seat = this.seats.find(s => s.numberSeat === seatNumber);
-          if (seat) {
-            await this.setIsBooked(seat);
+          for (const seatNumber of this.selectedSeats) {
+            const seat = this.seats.find(s => s.numberSeat === seatNumber);
+            if (seat) {
+              await this.setIsBooked(seat);
+            }
           }
+          // this.userForm = false; // Tutup form user setelah proses booking
+        } catch (error) {
+          console.error("Booking error:", error);
         }
-        this.userForm = false; // Tutup form user setelah proses booking
-      } catch (error) {
-        console.error("Booking error:", error);
+      } else if (this.kodeReferal == null) {
+        const data = {
+          name: this.firstName + " " + this.lastName,
+          email: this.email,
+          phone: this.phone,
+          jenisKelamin: this.jenisKelamin,
+          busName: this.busNames,
+          numberSeat: this.selectedSeats,
+          keberangkatan: this.$route.params.keberangkatan,
+          destinasi: this.$route.params.destinasi,
+          tipe: this.getTipe,
+          harga: this.busDatax.harga * this.selectedSeats.length,
+          jamKeberangkatan: this.jam,
+          deck: this.deck
+        };
+
+        try {
+          const res = await Api.post("booking", data);
+          console.log(res.data);
+
+          for (const seatNumber of this.selectedSeats) {
+            const seat = this.seats.find(s => s.numberSeat === seatNumber);
+            if (seat) {
+              await this.setIsBooked(seat);
+            }
+          }
+          // this.userForm = false; // Tutup form user setelah proses booking
+        } catch (error) {
+          console.error("Booking error:", error);
+        }
+      } else {
+        console.log("err...")
       }
     },
-    // async bookingSeat() {
-    //   const bookings = this.selectedSeats.map(seatNumber => ({
-    //     name: this.name,
-    //     email: this.email,
-    //     phone: this.phone,
-    //     jenisKelamin: this.jenisKelamin,
-    //     busName: this.busNames,
-    //     numberSeat: seatNumber,
-    //     keberangkatan: this.$route.params.keberangkatan,
-    //     destinasi: this.$route.params.destinasi,
-    //     jamKeberangkatan: this.jam,
-    //     deck: this.deck
-    //   }));
-
-    //   try {
-    //     const responses = await Promise.all(bookings.map(data => Api.post("booking", data)));
-    //     responses.forEach((res, index) => {
-    //       if (res.status === 201) {
-    //         const bookedSeatIndex = this.seats.findIndex(s => s.numberSeat === bookings[index].numberSeat);
-    //         if (bookedSeatIndex !== -1) {
-    //           this.seats[bookedSeatIndex].isBooked = true;
-    //         }
-    //         console.log("Booking successful for seat:", bookings[index].numberSeat);
-    //       }
-    //     });
-    //     this.userForm = false;
-    //   } catch (error) {
-    //     console.error("Booking error:", error);
-    //   }
-    // },
     async setIsBooked(seat) {
       if (seat.isBooked) {
         alert("Seat is already booked!");
@@ -746,7 +1013,7 @@ export default {
       } else if (seat.numberSeat === "30") {
         baseClass.push('relative -left-[108px] -top-[4px]');
       } else if (seat.numberSeat === "31") {
-        baseClass.push('relative -top-[112px] left-[328px]');
+        baseClass.push('relative -top-[112px] left-0 sm:left-[315px]');
       }
 
       return baseClass.join(' ');
@@ -755,7 +1022,7 @@ export default {
       let baseClass = ['text-center', 'transition-transform', 'duration-300', 'ease-in-out', 'transform', 'hover:scale-110'];
       if (seat.positionSeat === 'right' || seat.positionSeat === 'xRight') {
         if (seat.numberSeat === "30") {
-          baseClass.push('relative left-0 sm:-left-[103px] -ml-12')
+          baseClass.push('relative -left-[15px] sm:-left-[103px] -ml-12')
         } else if (seat.numberSeat === "31") {
           baseClass.push('relative left-[215px] mt-[13px] sm:mt-[0px] sm:left-[315px]')
         } else {

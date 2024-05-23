@@ -2,11 +2,12 @@ import { createRouter, createWebHistory } from "vue-router";
 import LoginView from "@/views/LoginView";
 import RegisterView from "@/views/RegisterView";
 import store from "@/services/store";
-import seat from "@/views/bookSeat";
-import seatUser from "@/views/seatUser";
-import adminSeatController from "@/views/adminDashboard";
 import HomePage from "@/views/HomePage";
-import adminControll from "@/views/adminControllerSeat";
+import bus from "@/views/busPage";
+import AdminSeat from "@/views/bookSeat";
+import admin from "@/views/adminDashboard";
+import adminControll from "@/views/adminCustomerData";
+// import seatUser from "@/views/seatUser";
 
 const routes = [
   {
@@ -20,8 +21,18 @@ const routes = [
     },
   },
   {
-    path: "/controller",
-    name: "admin controllers",
+    path: "/bus/:busName/:keberangkatan/:destinasi/:tipe",
+    name: "bus",
+    component: bus,
+    meta: {
+      title: "Bus Page",
+      authRequired: false,
+      authForbidden: false,
+    },
+  },
+  {
+    path: "/controller/:busName/:keberangkatan/:destinasi/:tipe",
+    name: "adminControllers",
     component: adminControll,
     meta: {
       title: "admin controllers",
@@ -42,7 +53,7 @@ const routes = [
   {
     path: "/admin",
     name: "admin",
-    component: adminSeatController,
+    component: admin,
     meta: {
       title: "Admin Dashboard",
       authRequired: false,
@@ -50,9 +61,9 @@ const routes = [
     },
   },
   {
-    path: "/Adminseat/:busName/:keberangkatan/:destinasi/:tipe",
+    path: "/Admin/:busName/:keberangkatan/:destinasi/:tipe",
     name: "Adminseat",
-    component: seat,
+    component: AdminSeat,
     props: true,
     meta: {
       title: "Book Seat",
@@ -60,17 +71,17 @@ const routes = [
       authForbidden: false,
     },
   },
-  {
-    path: "/seat/:busName/:keberangkatan/:destinasi/:tipe",
-    name: "seat",
-    component: seatUser,
-    props: true,
-    meta: {
-      title: "Book Seat User",
-      authRequired: false,
-      authForbidden: false,
-    },
-  },
+  // {
+  //   path: "/seat/:busName/:keberangkatan/:destinasi/:tipe",
+  //   name: "seat",
+  //   component: seatUser,
+  //   props: true,
+  //   meta: {
+  //     title: "Book Seat User",
+  //     authRequired: false,
+  //     authForbidden: false,
+  //   },
+  // },
   {
     path: "/register",
     name: "register",

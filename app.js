@@ -9,7 +9,7 @@ const app = express();
 
 // middleware
 if (process.env.NODE_ENV === "development") {
-  app.use(cors({ origin: "http://192.168.1.101:8080", credentials: true }));
+  app.use(cors({ origin: "http://192.168.1.105:8080", credentials: true }));
 } else {
   app.use(cors());
 }

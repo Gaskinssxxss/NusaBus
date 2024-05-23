@@ -6,12 +6,54 @@ const jadwalBus = require("../model/jadwalKeberangkatan");
 const jwt = require("jsonwebtoken");
 const { SECRET, MAX_AGE } = require("../consts");
 const { requireLogin } = require("../middleware/authentication");
+const midtransClient = require("midtrans-client");
 
 const router = Router();
 
 const createJwt = (payload) => {
   return jwt.sign({ payload }, SECRET, { expiresIn: MAX_AGE });
 };
+
+let snap = new midtransClient.Snap({
+  isProduction: false,
+  serverKey: "SB-Mid-server-NncN13w9Em6FsHowcLZyDoTU",
+  clientKey: "SB-Mid-client-I9Jfgwg5qKycBrEg",
+});
+
+router.post("/create-transaction", async (req, res) => {
+  try {
+    let { order_id, gross_amount, firstName, lastName, phone, email } =
+      req.body;
+
+    let parameter = {
+      transaction_details: {
+        order_id: order_id,
+        gross_amount: gross_amount,
+      },
+      customer_details: {
+        first_name: firstName,
+        last_name: lastName,
+        phone: phone,
+        email: email,
+      },
+    };
+
+    snap
+      .createTransaction(parameter)
+      .then((transaction) => {
+        res.json({
+          transaction_token: transaction.token,
+        });
+      })
+      .catch((e) => {
+        res.status(500).json({
+          message: e.message,
+        });
+      });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 router.post("/jadwalbus", async (req, res) => {
   try {
@@ -22,9 +64,11 @@ router.post("/jadwalbus", async (req, res) => {
       jamKeberangkatan,
       plat,
       tipe,
+      busClass,
       harga,
       seats,
       jadwal,
+      toilet,
     } = req.body;
 
     const busSchedule = new jadwalBus({
@@ -34,9 +78,11 @@ router.post("/jadwalbus", async (req, res) => {
       jamKeberangkatan: jamKeberangkatan,
       plat: plat,
       tipe: tipe,
+      busClass: busClass,
       harga: harga,
       seats: seats,
       jadwal: jadwal,
+      toilet: toilet,
     });
 
     const savedBusSchedule = await busSchedule.save();
@@ -93,9 +139,8 @@ router.post("/booking", async (req, res) => {
   try {
     console.log(
       `Attempting to book seat: ${req.body.numberSeat} on bus: ${req.body.busName}`
-    ); // Log attempt
+    );
 
-    // Cek apakah sudah ada booking dengan busName dan numberSeat yang sama
     const existingBooking = await bookings.findOne({
       busName: req.body.busName,
       numberSeat: { $in: req.body.numberSeat },
@@ -107,7 +152,6 @@ router.post("/booking", async (req, res) => {
         .json({ message: "Seat already booked for this bus" });
     }
 
-    // Jika tidak ada, buat booking baru
     const booking = new bookings({
       name: req.body.name,
       phone: req.body.phone,
@@ -117,15 +161,15 @@ router.post("/booking", async (req, res) => {
       keberangkatan: req.body.keberangkatan,
       jamKeberangkatan: req.body.jamKeberangkatan,
       destinasi: req.body.destinasi,
+      tipe: req.body.tipe,
+      harga: req.body.harga,
       numberSeat: req.body.numberSeat,
       deck: req.body.deck,
       Date: new Date(),
     });
 
-    // Simpan booking baru
     await booking.save();
 
-    // Kirim respon sukses
     res.status(201).json({ message: "Booking successful", booking });
   } catch (error) {
     console.error(

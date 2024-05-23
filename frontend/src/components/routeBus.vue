@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flex justify-start space-x-6 pt-6 pl-4">
         <div class="mb-1">
             <label class="block -mb-1 text-black text-xl font-Karantina">Date of Travel</label>
             <input type="date" v-model="tanggal"
@@ -13,14 +13,7 @@
                 <option value="Malam">malam</option>
             </select>
         </div>
-        <div>
-            <h1>Toilet : </h1>
-            <select v-model="toilet">
-                <option value="Toilet Tengah">Tengah</option>
-                <option value="Toilet Belakang">Belakang</option>
-            </select>
-        </div>
-        <div>
+        <div class="flex space-x-4">
             <div>
                 <h1>Keberangkatan : </h1>
                 <select v-model="keberangkatan">
@@ -42,10 +35,57 @@
     </div>
 
     <div class="pt-4">
-        <div v-for="jadwal in filteredJadwalBuz" :key="jadwal._id">
-            <button @click="goToSeatsPage(jadwal.busName, jadwal.keberangkatan, jadwal.destinasi, jadwal.tipe)">
-                <button>{{ jadwal.busName }}</button>
-            </button>
+        <div v-if="filteredJadwalBuz.length === 0" class="pt-4 grid grid-cols-4 mx-auto">
+            <div v-for="jadwal in allJadwalBuz" :key="jadwal._id">
+                <button @click="goToSeatsPage(jadwal.busName, jadwal.keberangkatan, jadwal.destinasi, jadwal.tipe)">
+                    <div class="text-start border-2 border-black rounded-md px-6 py-4">
+                        <h1>
+                            Bis {{ jadwal.busName }}
+                        </h1>
+                        <h1>
+                            Dari {{ jadwal.keberangkatan }}
+                        </h1>
+                        <h1>
+                            Tujuan {{ jadwal.destinasi }}
+                        </h1>
+                        <h1>
+                            Tipe {{ jadwal.tipe }}
+                        </h1>
+                        <h1>
+                            Jenis {{ jadwal.toilet }}
+                        </h1>
+                        <h1>
+                            Kursi Tersedia {{ countAvailableSeats(jadwal) }}
+                        </h1>
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div v-else class="pt-4 grid grid-cols-4 mx-auto">
+            <div v-for="jadwal in filteredJadwalBuz" :key="jadwal._id">
+                <button @click="goToSeatsPage(jadwal.busName, jadwal.keberangkatan, jadwal.destinasi, jadwal.tipe)">
+                    <div class="text-start border-2 border-black rounded-md px-6 py-4">
+                        <h1>
+                            Bis {{ jadwal.busName }}
+                        </h1>
+                        <h1>
+                            Dari {{ jadwal.keberangkatan }}
+                        </h1>
+                        <h1>
+                            Tujuan {{ jadwal.destinasi }}
+                        </h1>
+                        <h1>
+                            Tipe {{ jadwal.tipe }}
+                        </h1>
+                        <h1>
+                            Jenis {{ jadwal.toilet }}
+                        </h1>
+                        <h1>
+                            Kursi Tersedia {{ countAvailableSeats(jadwal) }}
+                        </h1>
+                    </div>
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -57,22 +97,28 @@ export default {
     data() {
         return {
             jadwalBuz: [],
+            allJadwalBuz: [],
             filteredJadwalBuz: [],
             tanggal: "",
             keberangkatan: "",
             destinasi: "",
             jam: "",
             toilet: "",
+            avail: 0,
         }
     },
     mounted() {
         this.jadwalBusy();
     },
     methods: {
+        countAvailableSeats(jadwal) {
+            return jadwal.seats.filter(seat => !seat.isBooked).length;
+        },
         async jadwalBusy() {
             try {
                 const response = await Api.get("jadwal");
                 this.jadwalBuz = response.data;
+                this.allJadwalBuz = response.data;
                 console.log(response.data)
             } catch (error) {
                 console.error(error);
@@ -80,32 +126,13 @@ export default {
             }
         },
         checkBis() {
-            if (!this.tanggal) {
-                this.filteredJadwalBuz = "";
-                console.log('Please select a date.');
-                return;
-            }
-
-            if (!this.jam) {
-                this.filteredJadwalBuz = "";
-                console.log('Please select a time.');
-                return;
-            }
-
-            if (!this.toilet) {
-                this.filteredJadwalBuz = "";
-                console.log('Please select a toilet.');
-                return;
-            }
-
-            if (!this.keberangkatan && !this.destinasi) {
-                this.filteredJadwalBuz = "";
-                console.log('Please select a destination.');
+            if (!this.tanggal || !this.jam || (!this.keberangkatan && !this.destinasi)) {
+                console.log('Please fill in all fields.');
                 return;
             }
 
             const selectedDate = new Date(this.tanggal).toISOString().split('T')[0];
-            this.filteredJadwalBuz = this.jadwalBuz.filter(bus => bus.jadwal.startsWith(selectedDate) && bus.keberangkatan === this.keberangkatan && bus.destinasi === this.destinasi && bus.waktuBerangkat === this.jam && bus.toilet === this.toilet);
+            this.filteredJadwalBuz = this.allJadwalBuz.filter(bus => bus.jadwal.startsWith(selectedDate) && bus.keberangkatan === this.keberangkatan && bus.destinasi === this.destinasi && bus.waktuBerangkat === this.jam && (this.toilet ? bus.toilet.includes(this.toilet) : true));
             console.log(this.filteredJadwalBuz)
             if (this.filteredJadwalBuz.length === 0) {
                 console.log('No buses available for the selected date.');

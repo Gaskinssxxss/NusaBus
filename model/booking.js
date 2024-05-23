@@ -17,6 +17,7 @@ const booking = new Schema({
   jenisKelamin: {
     type: String,
     required: true,
+    enum: ["Laki-Laki", "Perempuan"],
   },
   busName: {
     type: String,
@@ -34,6 +35,10 @@ const booking = new Schema({
     type: String,
     required: true,
   },
+  tipe: {
+    type: String,
+    required: true,
+  },
   numberSeat: {
     type: [],
     required: true,
@@ -42,6 +47,10 @@ const booking = new Schema({
   deck: {
     type: String,
     required: false,
+  },
+  harga: {
+    type: Number,
+    required: true,
   },
   Date: {
     type: Date,
@@ -60,6 +69,15 @@ booking.index(
   },
   { unique: true }
 );
+
+booking.pre("save", function (next) {
+  if (this.jenisKelamin === "Laki-Laki") {
+    this.jenisKelamin = "Tn";
+  } else if (this.jenisKelamin === "Perempuan") {
+    this.jenisKelamin = "Ny";
+  }
+  next();
+});
 
 const BookingsData = mongoose.model("BookingsData", booking);
 module.exports = BookingsData;

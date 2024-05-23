@@ -67,6 +67,10 @@ const jadwal = new mongoose.Schema({
     type: String,
     required: true,
   },
+  busClass: {
+    type: String,
+    required: true,
+  },
   toilet: {
     type: String,
     required: true,
@@ -74,6 +78,7 @@ const jadwal = new mongoose.Schema({
   harga: {
     type: Number,
     required: true,
+    default: 0,
   },
   jadwal: {
     type: Date,
