@@ -67,12 +67,12 @@
             <div class="flex justify-center -space-x-48 relative -top-[16rem]">
                 <div class="relative top-20 z-10 lg:top-24">
                     <div
-                        class="w-40 text-[calc(1.7rem+2.7vw)] leading-none ml-2 md:text-7xl lg:text-8xl md:w-72 lg:w-96 lg:-ml-16 font-normal text-geeks md:ml-6">
+                        class="w-40 text-[calc(1.7rem+2.7vw)] leading-none ml-2 md:text-7xl lg:text-8xl md:w-72 lg:w-96 lg:-ml-10 font-normal text-geeks md:ml-6">
                         <h1>AYO PESAN TIKET BUS SECARA ONLINE</h1>
                     </div>
                     <div>
                         <button @click="findBus"
-                            class="bg-iPromise hover:bg-tentraO py-1 px-6 ml-2 border-2 border-black transition-transform duration-300 ease-in-out transform hover:scale-110 sm:ml-2 md:ml-6 lg:-ml-16">
+                            class="bg-iPromise hover:bg-tentraO py-1 px-6 ml-2 border-2 border-black transition-transform duration-300 ease-in-out transform hover:scale-110 sm:ml-2 md:ml-6 lg:-ml-10">
                             <h1 class="text-[calc(1rem+1.2vw)] md:text-3xl lg:text-6xl">
                                 TIKET
                             </h1>
@@ -84,16 +84,16 @@
                         class="relative w-[80%] top-32 left-20 sm:w-[90%] md:w-full lg:w-[98%] sm:top-12 sm:left-24 md:left-16 lg:left-10">
                 </div>
                 <div
-                    class="relative -top-12 lg:-right-16 scale-75 sm:scale-90 md:scale-100 lg:scale-150 md:-top-4 lg:top-40 md:pr-4">
-                    <div class="bg-geeks w-48 sm:w-60 shadow-md p-4 text-sm">
-                        <div>
+                    class="relative -top-12 scale-75 sm:scale-90 md:scale-100 lg:scale-150 md:-top-4 lg:top-40 md:pr-4 lg:pr-0">
+                    <div class="bg-geeks w-48 sm:w-60 shadow-md p-4 text-sm lg:w-72">
+                        <div class="lg:text-xl">
                             <h1>Tanggal</h1>
                             <input type="date"
                                 class="border-2 border-black bg-gray-300 w-full text-lg font-normal py-1 pl-2"
                                 v-model="tanggal">
                         </div>
                         <div>
-                            <h1>Waktu : </h1>
+                            <h1 class="lg:text-xl">Waktu : </h1>
                             <select v-model="jam"
                                 class="w-full bg-gray-300 border-2 border-black uppercase text-sm font-normal py-1 pl-2">
                                 <option value="Pagi">pagi</option>
@@ -102,7 +102,7 @@
                             </select>
                         </div>
                         <div>
-                            <h1>Keberangkatan : </h1>
+                            <h1 class="lg:text-xl">Keberangkatan : </h1>
                             <select v-model="keberangkatan"
                                 class="w-full bg-gray-300 border-2 border-black uppercase text-lg font-normal py-1 pl-2">
                                 <option value="lombok">lombok</option>
@@ -110,7 +110,7 @@
                             </select>
                         </div>
                         <div>
-                            <h1>Destinasi : </h1>
+                            <h1 class="lg:text-xl">Destinasi : </h1>
                             <select v-model="destinasi"
                                 class="w-full bg-gray-300 border-2 border-black uppercase text-lg font-normal py-1">
                                 <option value="lombok">Lombok</option>
@@ -120,7 +120,7 @@
                         <div class="pt-4">
                             <button @click="checkBis"
                                 class="bg-iPromise hover:bg-tentraO border-2 border-black px-6 py-1 transition-transform duration-300 ease-in-out transform hover:scale-110">
-                                <h1>Cari</h1>
+                                <h1 class="lg:text-xl">Cari</h1>
                             </button>
                         </div>
                     </div>

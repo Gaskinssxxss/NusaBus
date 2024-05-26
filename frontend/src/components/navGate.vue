@@ -31,7 +31,7 @@
         </div>
     </div>
     <div id='mobileMustShow' v-if="isMobileMenuOpen"
-        class="fixed w-[75%] h-full right-0 top-0 z-50 bg-[#313131] space-y-10 transition duration-500 ease-in-out"
+        class="fixed w-[75%] sm:w-[50%] h-full right-0 top-0 z-50 bg-[#313131] space-y-10 transition duration-500 ease-in-out"
         :class="{ 'translate-x-full': !isMobileMenuOpen, 'translate-x-0': isMobileMenuOpen }">
         <div class="p-2 w-full flex justify-end ">
             <svg id="clickClose" @click="toggleSideMenu"
