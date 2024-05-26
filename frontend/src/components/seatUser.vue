@@ -244,8 +244,7 @@
     </div>
   </div>
 
-  <div class="flex justify-end pt-12 rounded-md fixed right-0
-z-50">
+  <div class="flex justify-end pt-12 rounded-md fixed right-0 z-50">
     <div class="bg-black">
       <div class="bg-iPromise px-10 py-6 border-2 border-black relative -top-2 -left-2">
         <div class="uppercase font-Karantina font-bold text-start tracking-wide">

@@ -1,32 +1,40 @@
 <template>
+
+    <!-- ".display-1": "text-[calc(1.625rem+4.5vw)] lg:text-[5rem] leading-[1.2] font-light",
+".display-2": "text-[calc(1.575rem+3.9vw)] lg:text-[4.5rem] leading-[1.2] font-light",
+".display-3": "text-[calc(1.525rem+3.3vw)] lg:text-[4rem] leading-[1.2] font-light",
+".display-4": "text-[calc(1.475rem+2.7vw)] lg:text-[3.5rem] leading-[1.2] font-light",
+".display-5": "text-[calc(1.425rem+2.1vw)] lg:text-[3rem] leading-[1.2] font-light",
+".display-6": "text-[calc(1.375rem+1.6vw)] lg:text-[2.5rem] leading-[1.2] font-light", -->
+
     <div v-show="showForm" class="fixed inset-0 items-center bg-black bg-opacity-75 z-50">
         <div @click="closed" class="flex justify-end pr-4 pt-4">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor"
-                class="w-[70px] h-[70px] stroke-[4px] stroke-geeks transition-transform duration-300 ease-in-out transform hover:scale-125">
+                class="w-[80px] h-[70px] stroke-[4px] stroke-geeks transition-transform duration-300 ease-in-out transform hover:scale-125">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
             </svg>
         </div>
-        <div class="font-Karantina font-bold text-2xl text-black px-52 relative top-48">
-            <div class="bg-geeks w-auto h-auto py-4 border-2 border-black flex justify-center uppercase space-x-4">
+        <div class="font-Karantina font-bold text-xl text-black px-44 relative top-48">
+            <div class="bg-geeks py-2 border-2 border-black flex justify-center uppercase space-x-4">
                 <div>
                     <h1>Tanggal</h1>
-                    <input type="date" class="border-2 border-black bg-gray-300 w-48 text-2xl font-normal py-1 pl-2"
+                    <input type="date" class="border-2 border-black bg-gray-300 text-xl font-normal py-1 pl-2"
                         v-model="tanggal">
                 </div>
                 <div>
                     <h1>Waktu</h1>
                     <select v-model="jam"
-                        class="w-48 bg-gray-300 border-2 border-black uppercase text-2xl font-normal py-2 pl-2">
-                        <option value="Pagi">pagi</option>
-                        <option value="Siang">siang</option>
-                        <option value="Malam">malam</option>
+                        class="bg-gray-300 border-2 border-black uppercase text-xl font-normal py-2 pl-2">
+                        <option class="text-sm" value="Pagi">pagi</option>
+                        <option class="text-sm" value="Siang">siang</option>
+                        <option class="text-sm" value="Malam">malam</option>
                     </select>
                 </div>
                 <div>
                     <h1>Keberangkatan</h1>
                     <select v-model="keberangkatan"
-                        class="w-48 bg-gray-300 border-2 border-black uppercase text-2xl font-normal py-2 pl-2">
+                        class="bg-gray-300 border-2 border-black uppercase text-xl font-normal py-2 pl-2">
                         <option value="lombok">lombok</option>
                         <option value="bima">Bima</option>
                     </select>
@@ -34,7 +42,7 @@
                 <div>
                     <h1>Destinasi</h1>
                     <select v-model="destinasi"
-                        class="w-48 bg-gray-300 border-2 border-black uppercase text-2xl font-normal py-2 pl-2">
+                        class="bg-gray-300 border-2 border-black uppercase text-xl font-normal py-2 pl-2">
                         <option value="lombok">Lombok</option>
                         <option value="bima">Bima</option>
                     </select>
@@ -50,43 +58,44 @@
     </div>
 
     <div>
-        <div class="font-Karantina font-bold uppercase tracking-wide">
-            <div>
-                <img src="@/assets/dark.jpg" alt="" class="h-[34rem] w-full">
-                <div class="bg-darkO w-full h-24 relative -top-20">
+        <div class="font-Karantina font-bold uppercase tracking-wide mb-10 h-[20rem]">
+            <div class="h-[20rem]">
+                <img src="@/assets/dark.jpg" alt="" class="h-[17rem] w-full sm:h-[19rem] lg:h-[28rem]">
+                <div class="bg-darkO w-full h-12 sm:h-16 md:h-24">
                 </div>
             </div>
-            <div class="flex justify-center -space-x-52 relative -top-[30rem]">
-                <div class="relative -top-4 z-10">
-                    <div class="text-8xl font-normal text-geeks">
-                        <h1>AYO PESAN</h1>
-                        <h1>TIKET BUS</h1>
-                        <h1>SECARA ONLINE</h1>
+            <div class="flex justify-center -space-x-48 relative -top-[16rem]">
+                <div class="relative top-20 z-10 lg:top-24">
+                    <div
+                        class="w-40 text-[calc(1.7rem+2.7vw)] leading-none ml-2 md:text-7xl lg:text-8xl md:w-72 lg:w-96 lg:-ml-16 font-normal text-geeks md:ml-6">
+                        <h1>AYO PESAN TIKET BUS SECARA ONLINE</h1>
                     </div>
                     <div>
                         <button @click="findBus"
-                            class="bg-iPromise hover:bg-tentraO px-10 py-2 border-2 border-black transition-transform duration-300 ease-in-out transform hover:scale-110">
-                            <h1 class="text-3xl">
+                            class="bg-iPromise hover:bg-tentraO py-1 px-6 ml-2 border-2 border-black transition-transform duration-300 ease-in-out transform hover:scale-110 sm:ml-2 md:ml-6 lg:-ml-16">
+                            <h1 class="text-[calc(1rem+1.2vw)] md:text-3xl lg:text-6xl">
                                 TIKET
                             </h1>
                         </button>
                     </div>
                 </div>
                 <div>
-                    <img src="@/assets/busy.png" alt="" class="w-[65rem] h-auto relative -top-10 left-20">
+                    <img src="@/assets/busy.png" alt=""
+                        class="relative w-[80%] top-32 left-20 sm:w-[90%] md:w-full lg:w-[98%] sm:top-12 sm:left-24 md:left-16 lg:left-10">
                 </div>
-                <div class="relative -top-20">
-                    <div class="bg-geeks w-72 py-6 shadow-md px-8 text-2xl">
+                <div
+                    class="relative -top-12 lg:-right-16 scale-75 sm:scale-90 md:scale-100 lg:scale-150 md:-top-4 lg:top-40 md:pr-4">
+                    <div class="bg-geeks w-48 sm:w-60 shadow-md p-4 text-sm">
                         <div>
                             <h1>Tanggal</h1>
                             <input type="date"
-                                class="border-2 border-black bg-gray-300 w-full text-2xl font-normal py-1 pl-2"
+                                class="border-2 border-black bg-gray-300 w-full text-lg font-normal py-1 pl-2"
                                 v-model="tanggal">
                         </div>
                         <div>
                             <h1>Waktu : </h1>
                             <select v-model="jam"
-                                class="w-full bg-gray-300 border-2 border-black uppercase text-2xl font-normal py-1 pl-2">
+                                class="w-full bg-gray-300 border-2 border-black uppercase text-sm font-normal py-1 pl-2">
                                 <option value="Pagi">pagi</option>
                                 <option value="Siang">siang</option>
                                 <option value="Malam">malam</option>
@@ -95,7 +104,7 @@
                         <div>
                             <h1>Keberangkatan : </h1>
                             <select v-model="keberangkatan"
-                                class="w-full bg-gray-300 border-2 border-black uppercase text-2xl font-normal py-1 pl-2">
+                                class="w-full bg-gray-300 border-2 border-black uppercase text-lg font-normal py-1 pl-2">
                                 <option value="lombok">lombok</option>
                                 <option value="bima">Bima</option>
                             </select>
@@ -103,7 +112,7 @@
                         <div>
                             <h1>Destinasi : </h1>
                             <select v-model="destinasi"
-                                class="w-full bg-gray-300 border-2 border-black uppercase text-2xl font-normal py-1">
+                                class="w-full bg-gray-300 border-2 border-black uppercase text-lg font-normal py-1">
                                 <option value="lombok">Lombok</option>
                                 <option value="bima">Bima</option>
                             </select>

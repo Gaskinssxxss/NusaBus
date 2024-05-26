@@ -6,13 +6,11 @@
         <div>
             <banner />
         </div>
-        <div>
-            <sec class="-mb-52" />
-            <div>
-                <foot />
-            </div>
+        <div class="lg:flex lg:justify-center">
+            <sec class="mb-16 lg:mb-32"></sec>
         </div>
     </div>
+    <foot class="bottom-0"></foot>
 </template>
 
 <script>
