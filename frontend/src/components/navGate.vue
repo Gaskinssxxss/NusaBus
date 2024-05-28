@@ -58,15 +58,11 @@
         <div class="font-Karantina flex flex-col mr-6 space-y-6 items-end">
             <button
                 class="bg-iPromise hover:bg-tentraO border-2 border-black px-20 py-1 transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-md shadow-gray-500">
-                <h1 class="text-3xl">Cari</h1>
+                <h1 class="text-3xl">GALLERY</h1>
             </button>
             <button
                 class="bg-iPromise hover:bg-tentraO border-2 border-black px-20 py-1 transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-md shadow-gray-500">
-                <h1 class="text-3xl">Cari</h1>
-            </button>
-            <button
-                class="bg-iPromise hover:bg-tentraO border-2 border-black px-20 py-1 transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-md shadow-gray-500">
-                <h1 class="text-3xl">Cari</h1>
+                <h1 class="text-3xl">SUPPORT</h1>
             </button>
         </div>
     </div>

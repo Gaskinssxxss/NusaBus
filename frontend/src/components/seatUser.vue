@@ -243,10 +243,42 @@
       </div>
     </div>
   </div>
+  <!-- style="box-shadow: 0.2rem 0.2rem black, 0rem 0rem #ccc;" -->
 
-  <div class="flex justify-end pt-12 rounded-md fixed right-0 z-50">
-    <div class="bg-black">
-      <div class="bg-iPromise px-10 py-6 border-2 border-black relative -top-2 -left-2">
+  <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+    class="size-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+  </svg> -->
+
+
+  <div id='open' class="flex justify-end pt-12 rounded-md fixed right-0 z-50">
+    <div
+      class="flex justify-center items-center py-2 bg-iPromise w-10 border-2 border-black mr-4 hover:scale-105 transition duration-300 ease-in-out lg:hidden"
+      style="box-shadow: 0.4rem 0.4rem black, 0rem 0rem #ccc;" @click="openModal" :class="{ 'hidden': showModal }">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
+      </svg>
+    </div>
+    <div id="show" class="bg-black" :class="{ 'lg:flex': !showModal }" v-if="showModal">
+      <div class="bg-iPromise px-5 py-3 pb-6 border-2 border-black relative -top-2 -left-2">
+        <div id='close' class="flex justify-end hover:scale-105 transition duration-300 ease-in-out"
+          @click="showModal = false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"
+            class="w-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </div>
+        <div class="uppercase font-Karantina font-bold text-start tracking-wide">
+          <h1 class="text-3xl">{{ busNames }} {{ getTipe }}</h1>
+          <h1>Jadwal : <span class="text-lg">{{ jam }}, {{ jadwal }}</span></h1>
+          <h1>Keberangkatan : {{ keberangkatan }}</h1>
+          <h1>Tujuan : {{ destinasi }}</h1>
+        </div>
+      </div>
+    </div>
+    <div id="show" class="bg-black hidden lg:flex">
+      <div class="bg-iPromise px-5 py-3 pb-6 border-2 border-black relative -top-2 -left-2">
         <div class="uppercase font-Karantina font-bold text-start tracking-wide">
           <h1 class="text-3xl">{{ busNames }} {{ getTipe }}</h1>
           <h1>Jadwal : <span class="text-lg">{{ jam }}, {{ jadwal }}</span></h1>
@@ -687,6 +719,7 @@ const uniqueCode = generateUniqueOrderID(8);
 export default {
   data() {
     return {
+      showModal: false,
       seats: [],
       busNames: null,
       selectedSeats: [],
@@ -755,6 +788,9 @@ export default {
     }
   },
   methods: {
+    openModal() {
+      this.showModal = true;
+    },
     async pay() {
       if (!this.snapLoaded) {
         console.error('Midtrans Snap.js is not loaded');

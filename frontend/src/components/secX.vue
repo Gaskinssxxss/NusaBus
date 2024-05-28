@@ -1,5 +1,6 @@
 <template>
-    <div class="font-Karantina font-bold uppercase tracking-wide pt-10 sm:pt-20 md:pt-44 lg:pt-96 lg:w-[1200px]">
+    <div
+        class="font-Karantina font-bold uppercase tracking-wide pt-10 sm:pt-20 md:pt-60 lg:pt-96 lg:w-[1200px] 2xl:pt-[30rem]">
         <div class="text-center">
             <h1 class="text-[calc(1.2rem+1.5vw)] lg:text-7xl">
                 TENTANG SISTEM TIKET BUS ONLINE
