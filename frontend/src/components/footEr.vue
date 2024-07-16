@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-darkO w-full h-auto font-Karantina text-3xl font-bold text-geeks text-center tracking-wider">
+    <div class="bg-darkO w-full h-auto font-Karantina text-3xl font-bold text-geeks text-center tracking-wider mt-20">
         <div class="py-10">
             <h1>
                 COPYRIGHT@2K24

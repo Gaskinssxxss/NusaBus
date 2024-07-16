@@ -6,3 +6,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bag-seats {
+  background-image: url("./assets/seats.png");
+}
