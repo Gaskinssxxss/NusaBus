@@ -60,8 +60,8 @@
             </div>
             <div class="space-y-[2px] pb-4">
               <h1>Nama</h1>
-              <div class="bg-black h-8 sm:w-52">
-                <div class="border-2 relative -top-1 -left-1 border-black px-2 h-8 sm:w-52 bg-gray-200">
+              <div class="bg-black h-8 sm:w-80">
+                <div class="border-2 relative -top-1 -left-1 border-black px-2 h-8 sm:w-80 bg-gray-200">
                   {{ firstName }} {{ lastName }}
                 </div>
               </div>
@@ -94,7 +94,7 @@
           <div class="pt-4">
             <div class="flex justify-center space-x-6">
               <div @click="sebelum" class="flex justify-start">
-                <div class="w-52">
+                <div class="w-80">
                   <div class="bg-black">
                     <div
                       class="bg-red-700 relative -top-1 -left-1 text-sunny border-2 border-black text-center py-[3px]">
@@ -106,7 +106,7 @@
                 </div>
               </div>
               <div @click="bookingSeat()" class="flex justify-start">
-                <div class="w-52">
+                <div class="w-80">
                   <div class="bg-black">
                     <div @click="pay"
                       class="bg-red-700 relative -top-1 -left-1 text-sunny border-2 border-black text-center py-[3px]">
@@ -122,7 +122,8 @@
         </div>
       </div>
     </div>
-    <div v-show="userForm" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-75 z-50">
+
+    <div v-show="userForm" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-75 z-100">
       <div>
         <div
           class="bg-iPromise h-auto w-auto border-2 border-black rounded-l-md rounded-t-md rounded-r-md rounded-br-none rounded-bl-none">
@@ -131,29 +132,29 @@
           </div>
         </div>
         <div
-          class="rounded-l-md rounded-t-none rounded-r-md rounded-b-md font-Karantina text-2xl text-start bg-gray-200 border-2 border-black h-auto sm:h-auto py-6 w-auto px-4 pb-6 pt-2 capitalize">
-          <div class="space-y-2 sm:space-y-1 pb-6 pl-2 text-xl tracking-wider">
+          class="rounded-l-md rounded-t-none rounded-r-md rounded-b-md font-Karantina text-2xl sm:text-xl text-start bg-gray-200 border-2 border-black h-auto sm:h-auto py-2 sm:py-6 w-auto px-4 pb-4 sm:pb-6 pt-0 sm:pt-2 capitalize">
+          <div class="space-y-0 pb-6 pl-2 text-2xl tracking-wider">
             <div class="ml-2">
               <h1>First Nama</h1>
-              <div class="bg-black w-[280px] sm:w-52 h-8">
+              <div class="bg-black w-[280px] sm:w-[16rem] h-10 sm:h-8">
                 <input
-                  class="w-[280px] sm:w-52 h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black text-base font-semibold uppercase"
+                  class="w-[280px] sm:w-[16rem] h-10 sm:h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black text-xl font-semibold uppercase"
                   v-model="firstName">
               </div>
             </div>
             <div class="ml-2">
               <h1>Last Nama</h1>
-              <div class="bg-black w-[280px] sm:w-52 h-8">
+              <div class="bg-black w-[280px] sm:w-[16rem] h-10 sm:h-8">
                 <input
-                  class="w-[280px] sm:w-52 h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black text-base font-semibold uppercase"
+                  class="w-[280px] sm:w-[16rem] h-10 sm:h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black text-xl font-semibold uppercase"
                   v-model="lastName">
               </div>
             </div>
             <div class="ml-2">
               <h1>Jenis Kelamin</h1>
-              <div class="bg-black w-[280px] sm:w-52 h-8">
+              <div class="bg-black w-[280px] sm:w-[16rem] h-10 sm:h-8">
                 <select v-model="jenisKelamin"
-                  class="w-[280px] sm:w-52 h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black capitalize text-base font-semibold">
+                  class="w-[280px] sm:w-[16rem] h-10 sm:h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black capitalize text-xl font-semibold">
                   <option value="Laki-Laki">Laki-Laki</option>
                   <option value="Perempuan">Perempuan</option>
                 </select>
@@ -161,33 +162,34 @@
             </div>
             <div class="ml-2">
               <h1>Nomor Wa</h1>
-              <div class="bg-black w-[280px] sm:w-52 h-8">
+              <div class="bg-black w-[280px] sm:w-[16rem] h-10 sm:h-8">
                 <input
-                  class="w-[280px] sm:w-52 h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black font-light tracking-wider text-2xl"
+                  class="w-[280px] sm:w-[16rem] h-10 sm:h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black font-light tracking-wider text-2xl"
                   v-model="phone">
               </div>
             </div>
             <div>
               <div class="ml-2">
                 <h1>Email</h1>
-                <div class="bg-black w-[280px] sm:w-52 h-8">
+                <div class="bg-black w-[280px] sm:w-[16rem] h-10 sm:h-8">
                   <input type="email"
-                    class="w-[280px] sm:w-52 h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black font-semibold text-base"
+                    class="w-[280px] sm:w-[16rem] h-10 sm:h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black font-semibold text-xl"
                     v-model="email">
                 </div>
               </div>
               <div class="ml-2">
                 <label class="inline-flex items-center pt-1" for="tealCheckBox">
                   <input id="tealCheckBox" type="checkbox"
-                    class="w-6 sm:w-4  h-6 sm:h-4 accent-red-700 font-semibold text-base">
+                    class="w-6 sm:w-4  h-6 sm:h-4 accent-red-700 font-semibold text-xl">
                   <span class="ml-2 text-2xl sm:text-lg">Tidak ada email.</span>
                 </label>
               </div>
             </div>
             <div class="pl-2 pb-2">
               <label class="" for="destinasi">Harga Tiket</label>
-              <div class="bg-black h-8">
-                <h1 class="pl-2 bg-gray-200 h-8 relative -left-1 -top-1 border-2 border-black font-semibold text-base">
+              <div class="bg-black h-10 sm:h-8">
+                <h1
+                  class="pl-2 bg-gray-200 h-10 sm:h-8 relative -left-1 -top-1 border-2 border-black font-semibold text-xl">
                   Rp. {{
                     (busDatax.harga) *
                     (selectedSeats.length) }}</h1>
@@ -195,9 +197,9 @@
             </div>
             <div class="pl-2">
               <label class="" for="destinasi">Kode Referal</label>
-              <div class="bg-black h-8">
+              <div class="bg-black h-10 sm:h-8">
                 <input
-                  class="w-[280px] sm:w-52 h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black font-semibold text-base"
+                  class="w-[280px] sm:w-[16rem] h-10 sm:h-8 relative rounded-none -top-1 -left-1 pl-2 bg-gray-200 border-2 border-black font-semibold text-xl"
                   v-model="kodeReferal">
               </div>
               <div>
@@ -217,21 +219,23 @@
               </div>
             </div>
           </div>
-          <div class="flex justify-center ml-4 -mt-4 space-x-4">
-            <div class="w-20">
+          <div class="flex justify-center ml-4 -mt-8 sm:-mt-8 space-x-6 sm:space-x-4">
+            <div class="w-full">
               <div @click="cancel"
                 class="bg-black transition-transform duration-300 ease-in-out transform hover:scale-110">
-                <div class="bg-red-700 relative -top-1 -left-1 text-sunny border-2 border-black text-center text-xl">
+                <div
+                  class="py-2 bg-red-700 relative -top-1 -left-1 text-sunny border-2 border-black text-center text-xl">
                   <button>
                     <h1 class="uppercase font-bold">Batal...</h1>
                   </button>
                 </div>
               </div>
             </div>
-            <div class="w-28">
+            <div class="w-full">
               <div @click="next"
                 class="bg-black transition-transform duration-300 ease-in-out transform hover:scale-110">
-                <div class="bg-red-700 relative -top-1 -left-1 text-sunny border-2 border-black text-center text-xl">
+                <div
+                  class="py-2 bg-red-700 relative -top-1 -left-1 text-sunny border-2 border-black text-center text-xl">
                   <button>
                     <h1 class="uppercase font-bold">Selanjutnya...</h1>
                   </button>
@@ -244,8 +248,7 @@
     </div>
   </div>
 
-  <div class="flex justify-end pt-12 rounded-md fixed right-0
-z-50">
+  <div class="hidden md:flex justify-end pt-12 rounded-md fixed right-0 z-50">
     <div class="bg-black">
       <div class="bg-iPromise px-10 py-6 border-2 border-black relative -top-2 -left-2">
         <div class="uppercase font-Karantina font-bold text-start tracking-wide">
@@ -258,7 +261,22 @@ z-50">
     </div>
   </div>
 
-  <div class="bg-gray-200 pt-10">
+  <div class="bg-gray-200 pt-8">
+    <div class="flex justify-center md:hidden z-50">
+      <div class="bg-black">
+        <div class="bg-iPromise px-10 py-4 border-2 border-black relative -top-2 -left-2">
+          <div class="uppercase font-Karantina font-bold text-start tracking-wide">
+            <h1 class="text-3xl">{{ busNames }} {{ getTipe }}</h1>
+            <h1>Jadwal : <span class="text-lg">{{ jam }}, {{ jadwal }}</span></h1>
+            <h1>Keberangkatan : {{ keberangkatan }}</h1>
+            <h1>Tujuan : {{ destinasi }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-200 pt-2 md:pt-10">
     <div class="flex justify-center space-x-8 pt-6 -mb-3">
       <div class="flex space-x-1">
         <div class="bg-gray-200 border-2 border-black w-6 h-6">
@@ -938,7 +956,6 @@ export default {
               await this.setIsBooked(seat);
             }
           }
-          // this.userForm = false; // Tutup form user setelah proses booking
         } catch (error) {
           console.error("Booking error:", error);
         }
@@ -968,7 +985,6 @@ export default {
               await this.setIsBooked(seat);
             }
           }
-          // this.userForm = false; // Tutup form user setelah proses booking
         } catch (error) {
           console.error("Booking error:", error);
         }

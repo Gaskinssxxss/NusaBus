@@ -3,7 +3,7 @@
         <div class="px-2 uppercase pt-2">
             <div>
                 <button @click="showBusList"
-                    class="bg-iPromise hover:bg-tentraO border-2 border-black font-Karantina text-xl uppercase font-bold px-5 py-4 w-full h-auto tracking-wider">
+                    class="bg-geeks hover:bg-gray-200 border-2 border-black font-Karantina text-xl uppercase font-bold py-4 w-full h-auto tracking-wider">
                     <h1 class="text-2xl">PilihBus!</h1>
                     <h1 v-if="selectBus">{{ selectedBusName }} ({{ keberangkatan }}-{{ destinasi }})</h1>
                 </button>
@@ -11,7 +11,7 @@
             <div v-if="bus">
                 <div v-for="buz in bus" :key="buz._id">
                     <div @click="selectBus(buz)" v-show="show"
-                        class="tracking-wider w-full h-auto px-5 bg-iPromise hover:bg-tentraO border-2 border-black py-4 transition-transform duration-300 ease-in-out transform hover:scale-110 text-center">
+                        class="tracking-wider w-full h-auto px-5 bg-geeks hover:bg-gray-200 border-2 border-black py-4 transition-transform duration-300 ease-in-out transform hover:scale-110 text-center">
                         <button>
                             <div class="font-Karantina text-xl uppercase font-bold">
                                 <h1>{{ buz.busName }} , {{ buz.keberangkatan }} ke {{ buz.destinasi }}</h1>
@@ -24,7 +24,7 @@
                         <label class="block -mb-1 text-black text-2xl font-bold font-Karantina pb-2">Tanggal
                             Keberangkatan</label>
                         <input type="date" v-model="jadwalBus"
-                            class="border-2 font-saira font-normal border-black inline-block py-5 px-3 w-[300px] sm:w-full h-8 text-black text-lg tracking-wider bg-iPromise" />
+                            class="border-2 font-saira font-normal border-black inline-block py-5 px-3 w-[300px] sm:w-full h-8 text-black text-lg tracking-wider bg-geeks hover:bg-gray-200" />
                     </div>
                 </div>
                 <div id="1" class="pt-6">
@@ -34,7 +34,7 @@
                                 <label class="block text-black font-Karantina">Jam Keberangkatan</label>
                                 <div>
                                     <select v-model="jamA"
-                                        class="bg-iPromise w-full border-2 py-1 border-black uppercase">
+                                        class="bg-geeks hover:bg-gray-200 w-full border-2 py-1 border-black uppercase">
                                         <option value="09:00">09:00</option>
                                         <option value="14:00">14:00</option>
                                         <option value="19:00">19:00</option>
@@ -44,7 +44,8 @@
                         </div>
                         <div>
                             <h1>Masukan nomor bis :</h1>
-                            <select v-model="tipeA" class="bg-iPromise w-full border-2 border-black py-1 uppercase">
+                            <select v-model="tipeA"
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black py-1 uppercase">
                                 <option value="bis-1">Bis-1</option>
                                 <option value="bis-2">Bis-2</option>
                                 <option value="bis-3">Bis-3</option>
@@ -56,7 +57,8 @@
                         </div>
                         <div>
                             <h1>Masukan Kelas bis :</h1>
-                            <select v-model="busClassA" class="bg-iPromise w-full border-2 border-black py-1 uppercase">
+                            <select v-model="busClassA"
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black py-1 uppercase">
                                 <option value="sleeperbus">sleeperbus</option>
                                 <option value="executive">executive</option>
                                 <option value="executive leg rest">executive leg rest</option>
@@ -65,13 +67,13 @@
                         <div>
                             <h1>Masukan Nomor Plat bis</h1>
                             <input type="text" v-model="platA"
-                                class="bg-iPromise w-full border-2 border-black uppercase">
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black uppercase">
                         </div>
                         <div>
                             <div>
                                 <label class="block text-black text-xl font-Karantina">Tipe Toilet</label>
                                 <select v-model="toiletA"
-                                    class="bg-iPromise w-full border-2 border-black py-1 uppercase">
+                                    class="bg-geeks hover:bg-gray-200 w-full border-2 border-black py-1 uppercase">
                                     <option value="Toilet Belakang">Toilet Belakang</option>
                                     <option value="Toilet Tengah">Toilet Tengah</option>
                                 </select>
@@ -81,7 +83,8 @@
                             <h1>Masukan Harga Tiket</h1>
                             <div class="flex  space-x-2">
                                 <h1>Rp. </h1>
-                                <input v-model="hargaA" class="bg-iPromise w-full border-2 border-black pl-2">
+                                <input v-model="hargaA"
+                                    class="bg-geeks hover:bg-gray-200 w-full border-2 border-black pl-2">
                             </div>
                         </div>
                     </div>
@@ -93,7 +96,7 @@
                                 <label class="block text-black font-Karantina">Jam Keberangkatan</label>
                                 <div>
                                     <select v-model="jamB"
-                                        class="bg-iPromise w-full border-2 py-1 border-black uppercase">
+                                        class="bg-geeks hover:bg-gray-200 w-full border-2 py-1 border-black uppercase">
                                         <option value="09:00">09:00</option>
                                         <option value="14:00">14:00</option>
                                         <option value="19:00">19:00</option>
@@ -103,7 +106,8 @@
                         </div>
                         <div>
                             <h1>Masukan nomor bis :</h1>
-                            <select v-model="tipeB" class="bg-iPromise w-full border-2 border-black py-1 uppercase">
+                            <select v-model="tipeB"
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black py-1 uppercase">
                                 <option value="bis-1">Bis-1</option>
                                 <option value="bis-2">Bis-2</option>
                                 <option value="bis-3">Bis-3</option>
@@ -115,7 +119,8 @@
                         </div>
                         <div>
                             <h1>Masukan Kelas bis :</h1>
-                            <select v-model="busClassB" class="bg-iPromise w-full border-2 border-black py-1 uppercase">
+                            <select v-model="busClassB"
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black py-1 uppercase">
                                 <option value="sleeperbus">sleeperbus</option>
                                 <option value="executive">executive</option>
                                 <option value="executive leg rest">executive leg rest</option>
@@ -124,13 +129,13 @@
                         <div>
                             <h1>Masukan Nomor Plat bis</h1>
                             <input type="text" v-model="platB"
-                                class="bg-iPromise w-full border-2 border-black uppercase">
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black uppercase">
                         </div>
                         <div>
                             <div>
                                 <label class="block text-black text-xl font-Karantina">Tipe Toilet</label>
                                 <select v-model="toiletB"
-                                    class="bg-iPromise w-full border-2 border-black py-1 uppercase">
+                                    class="bg-geeks hover:bg-gray-200 w-full border-2 border-black py-1 uppercase">
                                     <option value="Toilet Belakang">Toilet Belakang</option>
                                     <option value="Toilet Tengah">Toilet Tengah</option>
                                 </select>
@@ -140,7 +145,8 @@
                             <h1>Masukan Harga Tiket</h1>
                             <div class="flex  space-x-2">
                                 <h1>Rp. </h1>
-                                <input v-model="hargaB" class="bg-iPromise w-full border-2 border-black pl-2">
+                                <input v-model="hargaB"
+                                    class="bg-geeks hover:bg-gray-200 w-full border-2 border-black pl-2">
                             </div>
                         </div>
                     </div>
@@ -152,7 +158,7 @@
                                 <label class="block text-black font-Karantina">Jam Keberangkatan</label>
                                 <div>
                                     <select v-model="jamC"
-                                        class="bg-iPromise w-full border-2 py-1 border-black uppercase">
+                                        class="bg-geeks hover:bg-gray-200 w-full border-2 py-1 border-black uppercase">
                                         <option value="09:00">09:00</option>
                                         <option value="14:00">14:00</option>
                                         <option value="19:00">19:00</option>
@@ -162,7 +168,8 @@
                         </div>
                         <div>
                             <h1>Masukan nomor bis :</h1>
-                            <select v-model="tipeC" class="bg-iPromise w-full border-2 border-black py-1 uppercase">
+                            <select v-model="tipeC"
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black py-1 uppercase">
                                 <option value="bis-1">Bis-1</option>
                                 <option value="bis-2">Bis-2</option>
                                 <option value="bis-3">Bis-3</option>
@@ -174,7 +181,8 @@
                         </div>
                         <div>
                             <h1>Masukan Kelas bis :</h1>
-                            <select v-model="busClassC" class="bg-iPromise w-full border-2 border-black py-1 uppercase">
+                            <select v-model="busClassC"
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black py-1 uppercase">
                                 <option value="sleeperbus">sleeperbus</option>
                                 <option value="executive">executive</option>
                                 <option value="executive leg rest">executive leg rest</option>
@@ -183,13 +191,13 @@
                         <div>
                             <h1>Masukan Nomor Plat bis</h1>
                             <input type="text" v-model="platC"
-                                class="bg-iPromise w-full border-2 border-black uppercase">
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black uppercase">
                         </div>
                         <div>
                             <div>
                                 <label class="block text-black text-xl font-Karantina">Tipe Toilet</label>
                                 <select v-model="toiletC"
-                                    class="bg-iPromise w-full border-2 border-black py-1 uppercase">
+                                    class="bg-geeks hover:bg-gray-200 w-full border-2 border-black py-1 uppercase">
                                     <option value="Toilet Belakang">Toilet Belakang</option>
                                     <option value="Toilet Tengah">Toilet Tengah</option>
                                 </select>
@@ -199,7 +207,8 @@
                             <h1>Masukan Harga Tiket</h1>
                             <div class="flex  space-x-2">
                                 <h1>Rp. </h1>
-                                <input v-model="hargaC" class="bg-iPromise w-full border-2 border-black pl-2">
+                                <input v-model="hargaC"
+                                    class="bg-geeks hover:bg-gray-200 w-full border-2 border-black pl-2">
                             </div>
                         </div>
                     </div>
@@ -211,7 +220,7 @@
                                 <label class="block text-black font-Karantina">Jam Keberangkatan</label>
                                 <div>
                                     <select v-model="jamD"
-                                        class="bg-iPromise w-full border-2 py-1 border-black uppercase">
+                                        class="bg-geeks hover:bg-gray-200 w-full border-2 py-1 border-black uppercase">
                                         <option value="09:00">09:00</option>
                                         <option value="14:00">14:00</option>
                                         <option value="19:00">19:00</option>
@@ -221,7 +230,8 @@
                         </div>
                         <div>
                             <h1>Masukan nomor bis :</h1>
-                            <select v-model="tipeD" class="bg-iPromise w-full border-2 border-black py-1 uppercase">
+                            <select v-model="tipeD"
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black py-1 uppercase">
                                 <option value="bis-1">Bis-1</option>
                                 <option value="bis-2">Bis-2</option>
                                 <option value="bis-3">Bis-3</option>
@@ -233,7 +243,8 @@
                         </div>
                         <div>
                             <h1>Masukan Kelas bis :</h1>
-                            <select v-model="busClassD" class="bg-iPromise w-full border-2 border-black py-1 uppercase">
+                            <select v-model="busClassD"
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black py-1 uppercase">
                                 <option value="sleeperbus">sleeperbus</option>
                                 <option value="executive">executive</option>
                                 <option value="executive leg rest">executive leg rest</option>
@@ -242,13 +253,13 @@
                         <div>
                             <h1>Masukan Nomor Plat bis</h1>
                             <input type="text" v-model="platD"
-                                class="bg-iPromise w-full border-2 border-black uppercase">
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black uppercase">
                         </div>
                         <div>
                             <div>
                                 <label class="block text-black text-xl font-Karantina">Tipe Toilet</label>
                                 <select v-model="toiletD"
-                                    class="bg-iPromise w-full border-2 border-black py-1 uppercase">
+                                    class="bg-geeks hover:bg-gray-200 w-full border-2 border-black py-1 uppercase">
                                     <option value="Toilet Belakang">Toilet Belakang</option>
                                     <option value="Toilet Tengah">Toilet Tengah</option>
                                 </select>
@@ -258,7 +269,8 @@
                             <h1>Masukan Harga Tiket</h1>
                             <div class="flex  space-x-2">
                                 <h1>Rp. </h1>
-                                <input v-model="hargaD" class="bg-iPromise w-full border-2 border-black pl-2">
+                                <input v-model="hargaD"
+                                    class="bg-geeks hover:bg-gray-200 w-full border-2 border-black pl-2">
                             </div>
                         </div>
                     </div>
@@ -269,7 +281,8 @@
                             <div>
                                 <label class="block text-black font-Karantina">Jam Keberangkatan</label>
                                 <div>
-                                    <select v-model="jamE" class="bg-iPromise w-full border-2 border-black pl-2">
+                                    <select v-model="jamE"
+                                        class="bg-geeks hover:bg-gray-200 w-full border-2 border-black pl-2">
                                         <option value="09:00">09:00</option>
                                         <option value="14:00">14:00</option>
                                         <option value="19:00">19:00</option>
@@ -279,7 +292,8 @@
                         </div>
                         <div>
                             <h1>Masukan nomor bis :</h1>
-                            <select v-model="tipeE" class="bg-iPromise w-full border-2 border-black pl-2">
+                            <select v-model="tipeE"
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black pl-2">
                                 <option value="bis-1">Bis-1</option>
                                 <option value="bis-2">Bis-2</option>
                                 <option value="bis-3">Bis-3</option>
@@ -291,7 +305,8 @@
                         </div>
                         <div>
                             <h1>Masukan Kelas bis :</h1>
-                            <select v-model="busClassE" class="bg-iPromise w-full border-2 border-black pl-2">
+                            <select v-model="busClassE"
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black pl-2">
                                 <option value="sleeperbus">sleeperbus</option>
                                 <option value="executive">executive</option>
                                 <option value="executive leg rest">executive leg rest</option>
@@ -299,12 +314,14 @@
                         </div>
                         <div>
                             <h1>Masukan Nomor Plat bis</h1>
-                            <input type="text" v-model="platE" class="bg-iPromise w-full border-2 border-black pl-2">
+                            <input type="text" v-model="platE"
+                                class="bg-geeks hover:bg-gray-200 w-full border-2 border-black pl-2">
                         </div>
                         <div>
                             <div>
                                 <label class="block text-black text-xl font-Karantina">Tipe Toilet</label>
-                                <select v-model="toiletE" class="bg-iPromise w-full border-2 border-black pl-2">
+                                <select v-model="toiletE"
+                                    class="bg-geeks hover:bg-gray-200 w-full border-2 border-black pl-2">
                                     <option value="Toilet Belakang">Toilet Belakang</option>
                                     <option value="Toilet Tengah">Toilet Tengah</option>
                                 </select>
@@ -314,14 +331,15 @@
                             <h1>Masukan Harga Tiket</h1>
                             <div class="flex  space-x-2">
                                 <h1>Rp. </h1>
-                                <input v-model="hargaE" class="bg-iPromise w-full border-2 border-black pl-2">
+                                <input v-model="hargaE"
+                                    class="bg-geeks hover:bg-gray-200 w-full border-2 border-black pl-2">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="font-Karantina font-bold text-3xl flex justify-end pr-1 py-6">
+                <div class="font-Karantina font-bold text-2xl flex justify-end pr-1 py-6">
                     <button @click="registBus()"
-                        class="bg-iPromise hover:bg-tentraO border-2 border-black px-4 py-1 transition-transform duration-300 ease-in-out transform hover:scale-110">
+                        class="bg-iPromise hover:bg-tentraO border-2 border-black px-[75px] py-1 transition-transform duration-300 ease-in-out transform hover:scale-110">
                         <h1 class="uppercase">
                             regists!!
                         </h1>

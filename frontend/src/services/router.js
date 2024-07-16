@@ -7,6 +7,8 @@ import bus from "@/views/busPage";
 import AdminSeat from "@/views/bookSeat";
 import admin from "@/views/adminDashboard";
 import adminControll from "@/views/adminCustomerData";
+import gallery from "@/views/galleryPage";
+import support from "@/views/supportPage";
 // import seatUser from "@/views/seatUser";
 
 const routes = [
@@ -16,6 +18,26 @@ const routes = [
     component: HomePage,
     meta: {
       title: "Home Page",
+      authRequired: false,
+      authForbidden: false,
+    },
+  },
+  {
+    path: "/support",
+    name: "Support",
+    component: support,
+    meta: {
+      title: "Support",
+      authRequired: false,
+      authForbidden: false,
+    },
+  },
+  {
+    path: "/gallery",
+    name: "Galerry",
+    component: gallery,
+    meta: {
+      title: "Gallery",
       authRequired: false,
       authForbidden: false,
     },

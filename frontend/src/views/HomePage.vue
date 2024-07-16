@@ -7,7 +7,7 @@
             <banner />
         </div>
         <div>
-            <sec class="-mb-52" />
+            <sec class="pt-[10rem] md:pt-[40rem] pb-[5rem] sm:pb-[10rem]" />
             <div>
                 <foot />
             </div>

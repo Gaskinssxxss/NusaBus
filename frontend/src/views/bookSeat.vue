@@ -27,7 +27,7 @@
 
       <div v-if="busNames === 'Surabaya Indah'" class="grid grid-cols-3 gap-8 font-Karantina text-2xl">
         <div v-for="seat in seats" :key="seat._id"
-          :class="['text-center', 'transition-transform', 'duration-300', 'ease-in-out', 'transform', 'hover:scale-110', seat.numberSeat === 'Toilet' ? 'transition-transform duration-300 ease-in-out transform hover:scale-100' : '', seat.positionSeat === 'left' ? ' -ml-6 sm:-ml-10 -mr-2' : '', seat.positionSeat === 'right' ? 'ml-8 sm:ml-14 -mr-14 sm:-mr-16' : '', seat.positionSeat === 'xRight' ? ' ml-3 sm:ml-10 -mr-8 sm:-mr-10' : '']">
+          :class="['text-center', seat.numberSeat === 'Toilet' ? '' : '', seat.positionSeat === 'left' ? ' -ml-6 sm:-ml-10 -mr-2' : '', seat.positionSeat === 'right' ? 'ml-8 sm:ml-14 -mr-14 sm:-mr-16' : '', seat.positionSeat === 'xRight' ? ' ml-3 sm:ml-10 -mr-8 sm:-mr-10' : '']">
           <div class="rounded-md text-center">
             <div>
               <button :disabled="seat.isBooked" class=" cursor-pointer">
@@ -56,7 +56,8 @@
                 </div>
               </button>
             </div>
-            <div class="bg-black mt-2 mb-4 w-[200px]">
+            <div
+              class="bg-black mt-2 mb-4 w-[200px] transition-transform duration-300 ease-in-out transform hover:scale-110">
               <button v-if="seat.isBooked" @click="toggleSeatBooking(seat)"
                 class="relative -top-1 -left-1 block border-2 w-[200px] border-black bg-gray-300 text-black cursor-pointer hover:bg-tentraO ">
                 <div>
@@ -75,7 +76,7 @@
       <div v-else-if="seats.some(seat => seat.positionSeat === 'mid')"
         class="grid grid-cols-4 gap-2 font-Karantina text-2xl">
         <div v-for="seat in seats" :key="seat._id"
-          :class="['text-center', 'transition-transform', 'duration-300', 'ease-in-out', 'transform', 'hover:scale-110', seat.numberSeat === 'Toilet' ? 'transition-transform duration-300 ease-in-out transform hover:scale-100' : '', seat.positionSeat === 'left' ? ' -ml-8 sm:ml-12 -mr-2 sm:-mr-14' : '', 'xLeft' ? ' -ml-8 sm:-ml-[60px] -mr-2 sm:mr-4' : '', seat.positionSeat === 'right' ? '-ml-1 sm:ml-16 -mr-16 sm:-mr-2' : '', seat.positionSeat === 'xRight' ? ' -ml-1 sm:ml-1 -mr-20 sm:-mr-2' : '', seatClazz(seat), seatClaxx(seat)]">
+          :class="['text-center', seat.numberSeat === 'Toilet' ? '' : '', seat.positionSeat === 'left' ? ' -ml-8 sm:ml-12 -mr-2 sm:-mr-14' : '', 'xLeft' ? ' -ml-8 sm:-ml-[60px] -mr-2 sm:mr-4' : '', seat.positionSeat === 'right' ? '-ml-1 sm:ml-16 -mr-16 sm:-mr-2' : '', seat.positionSeat === 'xRight' ? ' -ml-1 sm:ml-1 -mr-20 sm:-mr-2' : '', seatClazz(seat), seatClaxx(seat)]">
           <div class="rounded-md text-center">
             <div>
               <button :disabled="seat.isBooked" class=" cursor-pointer">
@@ -87,7 +88,8 @@
                     </h1>
                     <div v-if="seat.bookingInfo">
                       <p>Name: {{ seat.bookingInfo.name }}</p>
-                      <p>Jenis Kelamin : {{ seat.bookingInfo.jenisKelamin }}</p>
+                      <p v-if="seat.bookingInfo.jenisKelamin === 'Tn'">Jenis Kelamin : {{ cowok }}</p>
+                      <p v-if="seat.bookingInfo.jenisKelamin === 'Ny'">Jenis Kelamin : {{ cewek }}</p>
                       <p>Phone: {{ seat.bookingInfo.phone }}</p>
                       <p>Keberangkatan: {{ seat.bookingInfo.keberangkatan }}</p>
                       <p>Destinasi: {{ seat.bookingInfo.destinasi }}</p>
@@ -104,7 +106,8 @@
             </div>
             <div
               :class="['px-5', 'text-center', 'uppercase', seat.positionSeat === 'left' ? 'ml-[2px]' : '', seat.positionSeat === 'xLeft' ? 'ml-12' : '', seat.positionSeat === 'right' ? '-ml-[10px]' : '', seat.positionSeat === 'xRight' ? 'ml-6' : '']">
-              <div class="bg-black mt-2 mb-4 w-[200px]">
+              <div
+                class="bg-black mt-2 mb-4 w-[200px] transition-transform duration-300 ease-in-out transform hover:scale-110">
                 <button v-if="seat.isBooked" @click="toggleSeatBooking(seat)"
                   class="relative -top-1 -left-1 block border-2 w-[200px] border-black bg-gray-300 text-black cursor-pointer hover:bg-tentraO">
                   <div>
@@ -123,7 +126,7 @@
 
       <div v-else class="grid grid-cols-4 gap-2 font-Karantina text-2xl">
         <div v-for="seat in seats" :key="seat._id"
-          :class="['text-center', 'transition-transform', 'duration-300', 'ease-in-out', 'transform', 'hover:scale-110', seat.numberSeat === 'Toilet' ? 'transition-transform duration-300 ease-in-out transform hover:scale-100' : '', seat.positionSeat === 'left' ? ' -ml-8 sm:ml-12 -mr-2 sm:-mr-14' : '', 'xLeft' ? ' -ml-8 sm:-ml-[60px] -mr-2 sm:mr-4' : '', seat.positionSeat === 'right' ? '-ml-1 sm:ml-16 -mr-16 sm:-mr-2' : '', seat.positionSeat === 'xRight' ? ' -ml-1 sm:ml-1 -mr-20 sm:-mr-2' : '', seatClass(seat)]">
+          :class="['text-center', seat.numberSeat === 'Toilet' ? '' : '', seat.positionSeat === 'left' ? ' -ml-8 sm:ml-12 -mr-2 sm:-mr-14' : '', 'xLeft' ? ' -ml-8 sm:-ml-[60px] -mr-2 sm:mr-4' : '', seat.positionSeat === 'right' ? '-ml-1 sm:ml-16 -mr-16 sm:-mr-2' : '', seat.positionSeat === 'xRight' ? ' -ml-1 sm:ml-1 -mr-20 sm:-mr-2' : '', seatClass(seat)]">
           <div class="rounded-md text-center">
             <div>
               <button :disabled="seat.isBooked" class=" cursor-pointer">
@@ -152,7 +155,8 @@
             </div>
             <div
               :class="['px-5', 'text-center', 'uppercase', seat.positionSeat === 'left' ? 'ml-[2px]' : '', seat.positionSeat === 'xLeft' ? 'ml-12' : '', seat.positionSeat === 'right' ? '-ml-[10px]' : '', seat.positionSeat === 'xRight' ? 'ml-6' : '']">
-              <div class="bg-black mt-2 mb-4 w-[200px]">
+              <div
+                class="bg-black mt-2 mb-4 w-[200px] transition-transform duration-300 ease-in-out transform hover:scale-110">
                 <button v-if="seat.isBooked" @click="toggleSeatBooking(seat)"
                   class="relative -top-1 -left-1 block border-2 w-[200px] border-black bg-gray-300 text-black cursor-pointer hover:bg-tentraO">
                   <div>
@@ -194,6 +198,8 @@ export default {
       destinasi: null,
       tipe: null,
       jam: null,
+      cowok: "Laki Laki",
+      cewek: "Perempuan"
     };
   },
   created() {

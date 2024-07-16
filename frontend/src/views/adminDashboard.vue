@@ -8,7 +8,7 @@
             <navGate />
         </div>
         <div class="font-Karantina font-bold uppercase pt-3 px-2 pb-4">
-            <div class="border-2 border-black">
+            <div class="border-2 border-black mr-[50px]">
                 <h1 class="text-4xl pl-4 py-2">Dashboard</h1>
             </div>
             <div class="flex h-auto">
@@ -25,12 +25,10 @@
 
                     </div>
                 </div>
-                <div v-show="regist">
-                    <h1 class="font-Karantina font-bold text-3xl text-center pt-[10px]">Registrasi Bis...</h1>
+                <div v-show="regist" class="ml-6 mt-4">
                     <busRegist />
                 </div>
                 <div v-show="check">
-                    <h1 class="font-Karantina font-bold text-3xl text-center pt-[10px]">Check Bis...</h1>
                     <checkBus />
                 </div>
             </div>

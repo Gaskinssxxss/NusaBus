@@ -19,9 +19,11 @@
                         <h1>
                             {{ jadwal.keberangkatan }} => {{ jadwal.destinasi }}
                         </h1>
-                        <h1>
-                            {{ jadwal.jamKeberangkatan }}, {{ jadwal.jadwal.split('T')[0] }}
-                        </h1>
+                        <div class="py-1">
+                            <h1 class="bg-che border-2 border-black text-geeks pl-2">
+                                {{ jadwal.jamKeberangkatan }}, {{ jadwal.jadwal.split('T')[0] }}
+                            </h1>
+                        </div>
                         <h1>
                             Kursi Tersedia <span class="bg-iPromise px-4 py-1 border-2 border-black">{{
                                 countAvailableSeats(jadwal) }}</span>
