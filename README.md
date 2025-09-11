@@ -1,8 +1,3 @@
-# simple-auth - Epic dragons
-
-This project is small web called "Epic dragons". The only purpose of this project is to create simple authentication
-secured by `httpOnly` cookies for SPA with separated backend and frontend.
-
 Project is implemented in MEVN stack:
 
 - MongoDB
@@ -19,4 +14,4 @@ done by `Vuex`.
 - `npm run backend` - starts the express server
 - `npm run frontend` - starts vue development server
 - `npm run dev` - starts both => backend and frontend
-- `npm run build` - installs dependencies and builds the frontend# NusaBus
+- `npm run build` - installs dependencies and builds the frontend
